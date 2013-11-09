@@ -4,6 +4,7 @@ public class Agente {
 
 	private Integer id_Agente;
 	private String nombre_Agente;
+	private String password;
 	private String email_Agente;
 	private String cargo;
 	private String descripcion;
@@ -60,5 +61,11 @@ public class Agente {
 	}
 	public void setEmail_Agente(String email_Agente) {
 		this.email_Agente = email_Agente;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
 	}
 }
