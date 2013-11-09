@@ -361,13 +361,14 @@ ul#botonesQueHacer {
 ul#botonesQueHacer li {
 	background-color: #DDD;
 	float: left;
+	border-radius: 10px;
 }
-ul#botonesQueHacer li#botonesQueHacerBtnBuscarEmpresas {
+ul#botonesQueHacer li#botonesQueHacerBtnVerPerfil, ul#botonesQueHacer li#botonesQueHacerBtnEmpresasQueSigo, ul#botonesQueHacer li#botonesQueHacerBtnBuscarEmpresas {
 	margin-left: 10px;
 }
 ul#botonesQueHacer a {
 	display: block;
-	padding: 30px 20px 30px 80px;
+	padding: 30px 10px 30px 80px;
 }
 #footer {
 	color: #FFF;

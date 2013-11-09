@@ -47,6 +47,8 @@
 			<h1>Bienvenido agente</h1>
 			<ul id="botonesQueHacer">
 				<li id="botonesQueHacerBtnCrearNoticia"><a href="crearnoticia.do">Crear una noticia</a></li>
+				<li id="botonesQueHacerBtnVerPerfil"><a href="perfilagente.do">Ver mi perfil</a></li>
+				<li id="botonesQueHacerBtnEmpresasQueSigo"><a href="empresasquesigo.do">Ver empresas que sigo</a></li>
 				<li id="botonesQueHacerBtnBuscarEmpresas"><a href="resultadosbusqueda.do">Buscar empresas</a></li>
 			</ul>
 		</div>
