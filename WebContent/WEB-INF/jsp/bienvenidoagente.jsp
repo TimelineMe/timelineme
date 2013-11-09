@@ -4,8 +4,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
-	<title>Alta Agentes</title>
-	<link rel="stylesheet" type="text/css" href="../css/estilos.css" />
+	<title>Bienvenido agente</title>
+	<link rel="stylesheet" href="../css/estilos.css" />
 </head>
 <body>
 	<div id="header">
@@ -17,7 +17,7 @@
 				<ul>
 					<div class="notificacion"><p>5</p></div>
 					<li class="mail">
-						<a href="notificaciones.do" class="icono-mail"></a>
+						<a href="notificaciones.html" class="icono-mail"></a>
 					</li>
 					<li class="configuracion">
 						<a href="#" class="icon-cogs"></a>
@@ -43,23 +43,13 @@
 		</div>
 	</div>
 	<div id="contenedor">
-		<div id="registroBienvenida">
-			<h1>Bienvenido a timeline.me</h1>
-			<p>Para poder empezar a publicar, tenés que dar de alta un agente.</p>
+		<div id="contenido">
+			<h1>Bienvenido agente</h1>
+			<ul id="botonesQueHacer">
+				<li id="botonesQueHacerBtnCrearNoticia"><a href="crearnoticia.do">Crear una noticia</a></li>
+				<li id="botonesQueHacerBtnBuscarEmpresas"><a href="resultadosbusqueda.do">Buscar empresas</a></li>
+			</ul>
 		</div>
-		<form action="" method="post" id="formRegistroAgente" enctype="multipart/form-data">
-			<fieldset>
-			<legend>Registro Agentes</legend>
-				<p><label for="nombre_Agente">Nombre y Apellido</label><input type="text" name="nombre_Agente" id="nombre_Agente" /></p>
-				<p><label for="email">E-mail</label><input type="text" name="email" id="email" /></p>
-				<p><label for="password">Contraseña</label><input type="text" name="password" id="password" /></p>
-				<p><label for="passwordRepetir">Repetir contraseña</label><input type="text" name="passwordRepetir" id="passwordRepetir" /></p>
-				<p><label for="cargo">Cargo</label><input type="text" name="cargo" id="cargo" /></p>
-				<p><label for="descripcion">Descripción</label><textarea name="descripcion" id="descripcion" cols="20" rows="5"></textarea></p>
-				<p><label for="foto">Foto</label><input type="file" name="foto" id="foto" /></p>
-			</fieldset>
-			<p><button type="submit">Aceptar</button></p>
-		</form>
 	</div>
 	<div id="footer">
 		<p>Copyright (c) 2013 Timeline.me, taller Web (Andrés Malagreca, Alicia Rosenthal, Marcos Scalzotto).</p>

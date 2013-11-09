@@ -53,6 +53,7 @@
 			<h1>Bienvenido a timeline.me</h1>
 			<p>Bienvenido a timeline.me, un sitio donde podés publicar las novedades de tu empresa, y enterarte de las novedades de las demás.</p>
 			<p><a href="paginas/altaagente.do">Alta Agente</a></p>
+			<p><a href="paginas/bienvenidoagente.do">Bienvenido agente</a></p>
 			<p><a href="paginas/crearnoticia.do">Crear Noticia</a></p>
 			<p><a href="paginas/empresasquesigo.do">Empresas que sigo</a></p>
 			<p><a href="paginas/notificaciones.do">Notificaciones</a></p>

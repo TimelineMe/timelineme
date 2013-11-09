@@ -14,6 +14,9 @@ a{
 a:hover{
 	color:#000;
 }
+img {
+	border: 0;
+}
 #header{
 	background:url(../img/menu.jpg);
 	height:90px;
@@ -27,7 +30,7 @@ a:hover{
 	float:left;
 	margin-top:10px;
 }
-#menu,#usuario{
+#menu, form#headerFormBuscar, #usuario{
 	float:right;
 	margin-top:30px;
 }
@@ -131,10 +134,10 @@ a:hover{
 #login {
 	width: 360px;
 }
-#login fieldset {
+#login fieldset, form#headerFormBuscar fieldset {
 	border: none;
 }
-#login fieldset legend {
+#login legend, form#headerFormBuscar legend, form#headerFormBuscar label {
 	position: absolute;
 	left: -99999px;/* Si usan display:none los softwares de lectura de texto no lo leerán */
 }
@@ -161,7 +164,7 @@ a:hover{
 #login fieldset, #login p, #login p.parrafoCampo label {
 	float: left;
 }
-#login input {
+#login input, form#headerFormBuscar input {
 	border: 1px solid #CCC;
 	padding: 5px;
 	border-radius: 2px;
@@ -172,6 +175,23 @@ a:hover{
 #login button {
 	margin-top: 16px;
 	width: 108px;
+}
+form#headerFormBuscar {
+	width: 210px;
+}
+form#headerFormBuscar p, form#headerFormBuscar input, form#headerFormBuscar button {
+	float: left;
+}
+form#headerFormBuscar button {
+	background-image: url('../img/boton_buscar.png');
+	text-indent: -99999px;
+	width: 28px;
+	height: 28px;
+	margin-left: 5px;
+	border-radius: 5px;
+}
+form#headerFormBuscar button:hover, form#headerFormBuscar button:focus {
+	background-position: -28px 0;
 }
 .notificacion
 {
@@ -196,13 +216,13 @@ a:hover{
 #contenedor {
 	margin: 15px auto;
 }
-#contenedor:before, #contenedor:after {
+#contenedor:before, #contenedor:after, ul#botonesQueHacer:before, ul#botonesQueHacer:after {
 	content: "\0020";
 	height: 0px;
 	display: block;
 	overflow: hidden;
 }
-#contenedor:after {
+#contenedor:after, ul#botonesQueHacer:after {
 	clear: both;
 }
 #registroBienvenida, form#formRegistro, form#formRegistroAgente {
@@ -221,7 +241,7 @@ form#formRegistro fieldset, form#formRegistroAgente fieldset,#formNoticia fields
 	padding: 0 10px;
 	border: 2px solid #CCC;
 }
-#login button, form#formRegistro legend, form#formRegistro button, form#formRegistroAgente legend, form#formRegistroAgente button, #headerEmpresa p#headerEmpresaBtnSeguir a, ul#listaEmpresasQueSigo a.btnDejarDeSeguir,#formNoticia legend,#formNoticia button {
+#login button, form#formRegistro legend, form#formRegistro button, form#formRegistroAgente legend, form#formRegistroAgente button, #headerEmpresa p#headerEmpresaBtnSeguir a, ul#resultadosBusqueda a.btnSeguir, ul#listaEmpresasQueSigo a.btnDejarDeSeguir,#formNoticia legend,#formNoticia button {
 	font-weight: bold;
 	font-size:12px;
 	font-family:arial;
@@ -231,10 +251,10 @@ form#formRegistro fieldset, form#formRegistroAgente fieldset,#formNoticia fields
 	border-radius: 5px;
 } 
 
-form#formRegistro button:hover, form#formRegistro button:focus, form#formRegistroAgente button:hover, form#formRegistroAgente button:focus, #headerEmpresa p#headerEmpresaBtnSeguir a:hover, #headerEmpresa p#headerEmpresaBtnSeguir a:focus, ul#listaEmpresasQueSigo a.btnDejarDeSeguir:hover, ul#listaEmpresasQueSigo a.btnDejarDeSeguir:focus,form#formNoticia button:hover {
+form#formRegistro button:hover, form#formRegistro button:focus, form#formRegistroAgente button:hover, form#formRegistroAgente button:focus, #headerEmpresa p#headerEmpresaBtnSeguir a:hover, #headerEmpresa p#headerEmpresaBtnSeguir a:focus, ul#resultadosBusqueda a.btnSeguir:hover,ul#resultadosBusqueda a.btnSeguir:focus,ul#listaEmpresasQueSigo a.btnDejarDeSeguir:hover, ul#listaEmpresasQueSigo a.btnDejarDeSeguir:focus,form#formNoticia button:hover {
 	background-color: #D00;
 }
-#login button, form#formRegistro button, form#formRegistroAgente button, form#formNoticia button {
+#login button, form#headerFormBuscar button, form#formRegistro button, form#formRegistroAgente button, form#formNoticia button {
 	border: 0;
 	cursor: pointer;
 }
@@ -288,10 +308,10 @@ form#formRegistro fieldset, form#formRegistroAgente fieldset , #headerEmpresa, .
 #headerEmpresa h1, #headerEmpresa h2 {
 	margin-left: 230px;
 }
-#headerEmpresa p#headerEmpresaBtnSeguir a, ul#listaEmpresasQueSigo a.btnDejarDeSeguir {
+#headerEmpresa p#headerEmpresaBtnSeguir a, ul#resultadosBusqueda a.btnSeguir, ul#listaEmpresasQueSigo a.btnDejarDeSeguir {
 	text-align: center;
 }
-#headerEmpresa p#headerEmpresaBtnSeguir a, ul#listaEmpresasQueSigo a, ul#listaEmpresasQueSigo a.btnDejarDeSeguir, ul#listaNotificaciones a {
+#headerEmpresa p#headerEmpresaBtnSeguir a, ul#resultadosBusqueda a, ul#resultadosBusqueda a.btnSeguir, ul#listaEmpresasQueSigo a, ul#listaEmpresasQueSigo a.btnDejarDeSeguir, ul#listaNotificaciones a {
 	text-decoration: none;
 }
 #headerEmpresa p#fotoEmpresa {
@@ -301,10 +321,10 @@ form#formRegistro fieldset, form#formRegistroAgente fieldset , #headerEmpresa, .
 	width: 200px;
 	height: 200px;
 }
-#headerEmpresa p#fotoEmpresa, ul#listaEmpresasQueSigo li, ul#listaNotificaciones li {
+#headerEmpresa p#fotoEmpresa, ul#resultadosBusqueda li, ul#listaEmpresasQueSigo li, ul#listaNotificaciones li {
 	border-radius: 5px;
 }
-#headerEmpresa ul, ul#listaEmpresasQueSigo, ul#listaNotificaciones {
+#headerEmpresa ul, ul#resultadosBusqueda, ul#listaEmpresasQueSigo, ul#listaNotificaciones {
 	list-style: none;
 }
 .noticia h2 {
@@ -318,22 +338,36 @@ form#formRegistro fieldset, form#formRegistroAgente fieldset , #headerEmpresa, .
 	padding: 1px 10px;
 	clear: both;
 }
-ul#listaEmpresasQueSigo li {
+ul#resultadosBusqueda li, ul#listaEmpresasQueSigo li {
 	line-height: 2;
 	margin-bottom: 5px;
 	padding-bottom: 5px;
 }
-ul#listaEmpresasQueSigo a.btnDejarDeSeguir {
+ul#resultadosBusqueda a.btnSeguir, ul#listaEmpresasQueSigo a.btnDejarDeSeguir {
 	line-height: 1.25;
 	float: right;
-}
-ul#listaEmpresasQueSigo a.btnDejarDeSeguir:hover, ul#listaEmpresasQueSigo a.btnDejarDeSeguir:hover {
 	color: #FFF;
 }
-ul#listaEmpresasQueSigo li, ul#listaNotificaciones li {
+ul#resultadosBusqueda li, ul#listaEmpresasQueSigo li, ul#listaNotificaciones li {
 	background-color: #DDD;
 	margin: 10px 0;
 	padding: 10px;
+}
+ul#botonesQueHacer {
+	margin-left: 0;
+	font-size: 16px;
+	list-style: none;
+}
+ul#botonesQueHacer li {
+	background-color: #DDD;
+	float: left;
+}
+ul#botonesQueHacer li#botonesQueHacerBtnBuscarEmpresas {
+	margin-left: 10px;
+}
+ul#botonesQueHacer a {
+	display: block;
+	padding: 30px 20px 30px 80px;
 }
 #footer {
 	color: #FFF;

@@ -31,6 +31,10 @@
 					</li>
 				</ul>
 			</div>
+			<form action="resultadosbusqueda.do" id="headerFormBuscar">
+				<p><label for="textoBuscarHeader">Buscar</label><input type="text" name="q" id="textoBuscarHeader" /></p>
+				<p><button type="submit">Buscar</button></p>
+			</form>
 			<div id="usuario">
 				<img src="../img/perfil.png" alt="" /> <p>Hola usuario</p>
 			</div>

@@ -12,6 +12,10 @@ public class MenuController {
 	public ModelAndView AltaAgente() {
 		return new ModelAndView("altaagente");
 	}
+	@RequestMapping("/bienvenidoagente") 
+	public ModelAndView BienvenidoAgente() {
+		return new ModelAndView("bienvenidoagente");
+	}
 	@RequestMapping("/crearnoticia") 
 	public ModelAndView CrearAgente() {
 		return new ModelAndView("crearnoticia");
@@ -27,6 +31,10 @@ public class MenuController {
 	@RequestMapping("/perfilagente") 
 	public ModelAndView PerfilAgente() {
 		return new ModelAndView("perfilagente");
+	}
+	@RequestMapping("/resultadosbusqueda") 
+	public ModelAndView ResultadosBusqueda() {
+		return new ModelAndView("resultadosbusqueda");
 	}
 	@RequestMapping("/timeline") 
 	public ModelAndView TimelineAgente() {
