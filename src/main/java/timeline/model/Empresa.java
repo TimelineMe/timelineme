@@ -2,7 +2,6 @@ package timeline.model;
 
 public class Empresa {
 
-	private Integer id_Empresa;
 	private String email;
 	private String password;
 	private String logo;
@@ -11,19 +10,10 @@ public class Empresa {
 	private String direccion;
 	private Integer telefono;
 	
-	public Empresa(Integer id_Empresa,String razon_Social) {
-		this.setId_Empresa(id_Empresa);
+	public Empresa(String email, String razon_Social) {
+		this.setEmail(email);
 		this.setRazon_Social(razon_Social);
 	}
-
-	public Integer getId_Empresa() {
-		return id_Empresa;
-	}
-
-	public void setId_Empresa(Integer id_Empresa) {
-		this.id_Empresa = id_Empresa;
-	}
-
 	public String getEmail() {
 		return email;
 	}

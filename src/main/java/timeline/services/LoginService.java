@@ -1,7 +1,9 @@
 package timeline.services;
 
-import timeline.model.Agente;
-import timeline.persistence.AgenteDao;
+import timeline.model.Empresa;
+import timeline.persistence.EmpresaDao;
+import timeline.persistence.EmpresaDaoJdbcImpl;
+import timeline.persistence.PersistenceException;
 
 public class LoginService {
 	private static LoginService instance;
@@ -12,11 +14,12 @@ public class LoginService {
 		}
 		return instance;
 	}
-	/*public Boolean authenticate(String username, String password) {
-		AgenteDao agenteDao = DAOLocator.getInstance().getAgenteDao();
-		
-		Agente miAgente = agenteDao.findById(username);
-		return password.equals(miAgente.getPassword());
-	}*/
+	
+	public Boolean validar(String email, String password){
+		return email.equals(password);
+		/*EmpresaDao empresaDao = EmpresaDaoJdbcImpl.getInstance();
+		Empresa miEmpresa = empresaDao.findByEmail(email);
+		return password.equals(miEmpresa.getPassword());*/
+	}
 }
 

@@ -14,8 +14,8 @@
 				<a href="../index.jsp"><img src="../img/timeline_me.png" alt="" /></a>
 			</div>
 			<div id="menu">
+				<div class="notificacion"><p>5</p></div>
 				<ul>
-					<div class="notificacion"><p>5</p></div>
 					<li class="mail">
 						<a href="notificaciones.html" class="icono-mail"></a>
 					</li>

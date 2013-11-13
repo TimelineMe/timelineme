@@ -17,8 +17,8 @@ public class AgenteDaoTests {
 
 	AgenteDao dao = DaoFactory.getAgenteDao(); //devuelve un dao
 
-	Agente andres = new Agente(2,"andres","andres@gmail.com");
-	Agente marcos = new Agente(5,"marcos","marcos@gmail.com");
+	Agente andres = new Agente("andres@gmail.com","andres");
+	Agente marcos = new Agente("marcos@gmail.com","marcos");
 
 	@Before
 	public void setUp() throws PersistenceException {
@@ -42,41 +42,41 @@ public class AgenteDaoTests {
 	@Test
 	public void testQueSePuedeBuscarUnAgente() throws PersistenceException {
 
-		Agente agenteEncontrado = dao.findById(andres.getId());
+		Agente agenteEncontrado = dao.findByEmail(andres.getEmail_Agente());
 
-		assertNotNull("el agente con id 2 debe existir", agenteEncontrado);
-		assertEquals("el agente 2 tiene nombre: andres", "andres", agenteEncontrado.getNombre());
+		assertNotNull("el agente con email andres@gmail.com debe existir", agenteEncontrado);
+		assertEquals("el agente de este email tiene nombre: andres", "andres", agenteEncontrado.getNombre());
 
 	}
 
 	@Test
 	public void testQueSePuedeInsertarUnAgente() throws PersistenceException {
 
-		Agente arte = new Agente (1,"alicia","alicia@gmail.com");
+		Agente arte = new Agente ("alicia@gmail.com","alicia");
 		assertEquals("antes de insertar hay 2 agentes", 2, dao.findAll().size());
 
 		dao.insert(arte);
 		assertEquals("luego de insertar hay 3 agentes", 3, dao.findAll().size());
-		assertNotNull("que existe un agente con ese id", dao.findById(arte.getId()));
+		assertNotNull("que existe un agente con ese id", dao.findByEmail(arte.getEmail_Agente()));
 
 	}
 	
 	@Test
 	public void testQueSePuedeBorrarUnAgente() throws PersistenceException {
 
-		Agente agenteEncontrado = dao.findById(andres.getId());
+		Agente agenteEncontrado = dao.findByEmail(andres.getEmail_Agente());
 		dao.delete(agenteEncontrado);
 
-		agenteEncontrado = dao.findById(1);
-		assertNull("el agente con ese id no deberia existir", agenteEncontrado);
+		agenteEncontrado = dao.findByEmail("andres@gmail.com");
+		assertNull("el agente con ese email no deberia existir", agenteEncontrado);
 
 	}
 	
 	@Test
 	public void testQueSePuedeActualizarUnAgente() throws PersistenceException {
 
-		Agente agenteEncontrado = dao.findById(marcos.getId());
-		assertEquals("la persona con id 5 se llama marcos", "marcos", agenteEncontrado.getNombre());
+		Agente agenteEncontrado = dao.findByEmail(marcos.getEmail_Agente());
+		assertEquals("la persona con email marcos@gmail.com se llama marcos", "marcos", agenteEncontrado.getNombre());
 		agenteEncontrado.setNombre("marcos02");
 		dao.update(agenteEncontrado);
 		assertEquals("el agente ahora es marcos02", "marcos02", agenteEncontrado.getNombre());

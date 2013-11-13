@@ -13,7 +13,7 @@ public interface EmpresaDao { //es una interface, que alguien tiene que implemen
     
     public void update(Empresa empresa) throws PersistenceException;
     
-    public Empresa findById(Integer id_Empresa) throws PersistenceException; //trae un objeto de tipo persona
+    public Empresa findByEmail(String email) throws PersistenceException; //trae un objeto de tipo persona
     
     public List<Empresa> findAll() throws PersistenceException;
     

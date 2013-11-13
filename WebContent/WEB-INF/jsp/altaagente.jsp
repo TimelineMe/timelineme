@@ -14,8 +14,8 @@
 				<a href="../index.jsp"><img src="../img/timeline_me.png" alt="" /></a>
 			</div>
 			<div id="menu">
+				<div class="notificacion"><p>5</p></div>
 				<ul>
-					<div class="notificacion"><p>5</p></div>
 					<li class="mail">
 						<a href="notificaciones.do" class="icono-mail"></a>
 					</li>
@@ -38,13 +38,13 @@
 				<p><button type="submit">Buscar</button></p>
 			</form>
 			<div id="usuario">
-				<img src="../img/perfil.png" alt="" /> <p>Hola usuario</p>
+				<img src="../img/perfil.png" alt="" /> <p>Hola ${empresa}</p>
 			</div>
 		</div>
 	</div>
 	<div id="contenedor">
 		<div id="registroBienvenida">
-			<h1>Bienvenido a timeline.me</h1>
+			<h1>Bienvenido ${empresa} a timeline.me</h1>
 			<p>Para poder empezar a publicar, tenés que dar de alta un agente.</p>
 		</div>
 		<form action="" method="post" id="formRegistroAgente" enctype="multipart/form-data">

@@ -3,6 +3,7 @@ package timeline.services;
 import timeline.model.Agente;
 import timeline.persistence.AgenteDao;
 import timeline.persistence.AgenteDaoJdbcImpl;
+import timeline.persistence.PersistenceException;
 
 public class AgenteService {
 	private static AgenteService instance;
@@ -15,11 +16,11 @@ public class AgenteService {
 	}
 	
 	
-	public Agente buscarAgente(String email){
+	public Agente buscarAgente(String email) throws PersistenceException{
 		
 		Agente agente = null;
 		AgenteDao agenteDao = AgenteDaoJdbcImpl.getInstance();
-		/*agenteDao.findById();*/
+		agenteDao.findByEmail(email);
 			
 		return agente;
 	}

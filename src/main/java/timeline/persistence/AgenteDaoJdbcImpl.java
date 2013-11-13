@@ -29,10 +29,10 @@ public class AgenteDaoJdbcImpl implements AgenteDao { // este es el que implemen
 		try {
 			tx.begin(); //comienza la transaccion
 			//esto es un prepareStatement
-			String query = "insert into Agente (id_Agente, nombre_Agente) values (?, ?)";
+			String query = "insert into Agente (email_Agente,nombre_Agente) values (?, ?)";
 			PreparedStatement statement = TransactionJdbcImpl.getInstance()
 					.getConnection().prepareStatement(query);
-			statement.setInt(1, agente.getId()); // en el punto1, pone lo que te viene de persona.getId();
+			statement.setString(1, agente.getEmail_Agente()); // en el punto1, pone lo que te viene de persona.getEmail();
 			statement.setString(2, agente.getNombre());
 
 			statement.executeUpdate();
@@ -59,9 +59,9 @@ public class AgenteDaoJdbcImpl implements AgenteDao { // este es el que implemen
 		try {
 			tx.begin();
 
-			String query = "delete from Agente where id_Agente = ?";
+			String query = "delete from Agente where email_Agente = ?";
 			PreparedStatement statement = conn.prepareStatement(query);
-			statement.setInt(1, agente.getId());
+			statement.setString(1, agente.getEmail_Agente());
 			statement.executeUpdate();
 
 			tx.commit();
@@ -80,12 +80,12 @@ public class AgenteDaoJdbcImpl implements AgenteDao { // este es el que implemen
 	@Override
 	public void update(Agente agente) throws PersistenceException {
 		try {
-			String query = "update Agente set nombre_Agente = ? where id_Agente = ?";
+			String query = "update Agente set nombre_Agente = ? where email_Agente = ?";
 
 			PreparedStatement statement = TransactionJdbcImpl.getInstance()
 					.getConnection().prepareStatement(query);
 			statement.setString(1, agente.getNombre());
-			statement.setInt(2, agente.getId());
+			statement.setString(2, agente.getEmail_Agente());
 			statement.executeUpdate();
 		} catch (SQLException sqlException) {
 			throw new PersistenceException(sqlException);
@@ -109,17 +109,17 @@ public class AgenteDaoJdbcImpl implements AgenteDao { // este es el que implemen
 	}
 
 	@Override
-	public Agente findById(Integer id_Agente) throws PersistenceException {
-		if (id_Agente == null) {
+	public Agente findByEmail(String email_Agente) throws PersistenceException {
+		if (email_Agente == "") {
 			throw new IllegalArgumentException(
-					"El id de agente no debe ser nulo");
+					"El email de agente no debe ser vacio");
 		}
 		Agente agente = null;
 		try {
 			Connection c = ConnectionProvider.getInstance().getConnection();
-			String query = "select * from Agente where id_Agente = ?";
+			String query = "select * from Agente where email_Agente = ?";
 			PreparedStatement statement = c.prepareStatement(query);
-			statement.setInt(1, id_Agente);
+			statement.setString(1, email_Agente);
 			ResultSet resultSet = statement.executeQuery();
 			if (resultSet.next()) {
 				agente = convertOne(resultSet);
@@ -131,7 +131,7 @@ public class AgenteDaoJdbcImpl implements AgenteDao { // este es el que implemen
 	}
 
 	private Agente convertOne(ResultSet resultSet) throws SQLException {
-		Agente retorno = new Agente(resultSet.getInt("id_Agente"),resultSet.getString("nombre_Agente"),resultSet.getString("email_Agente")); //crea el agente, le asigna los valores y la devuelve
+		Agente retorno = new Agente(resultSet.getString("email_Agente"),resultSet.getString("nombre_Agente")); //crea el agente, le asigna los valores y la devuelve
 		return retorno;
 	}
 

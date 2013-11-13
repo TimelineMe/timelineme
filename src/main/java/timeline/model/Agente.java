@@ -2,7 +2,7 @@ package timeline.model;
 
 public class Agente {
 
-	private Integer id_Agente;
+	
 	private String nombre_Agente;
 	private String password;
 	private String email_Agente;
@@ -12,13 +12,9 @@ public class Agente {
 	private String empresa;
 	
 	
-	public Agente(Integer id_Agente,String nombre_Agente, String email_Agente) {
-		this.id_Agente = id_Agente;
-		this.nombre_Agente = nombre_Agente;
+	public Agente(String email_Agente, String nombre_Agente) {
 		this.email_Agente = email_Agente;
-	}
-	public Integer getId() {
-		return id_Agente;
+		this.nombre_Agente = nombre_Agente;
 	}
 	
 	public String getNombre() {
@@ -26,12 +22,8 @@ public class Agente {
 	}
 	public void setNombre(String nombre_Agente) {
 		this.nombre_Agente = nombre_Agente;
-		
 	}
-	public void setId(int id_Agente) {
-		this.id_Agente = id_Agente;
-		
-	}
+	
 	public String getDescripcion() {
 		return descripcion;
 	}

@@ -17,8 +17,8 @@ public class EmpresaDaoTests {
 
 	EmpresaDao dao = DaoFactory.getEmpresaDao(); //devuelve un dao
 
-	Empresa aerolinea = new Empresa(2,"Aerolinea xxx");
-	Empresa supermercado = new Empresa(5,"Super Pirulo");
+	Empresa aerolinea = new Empresa("facebook@aerolineaxxx.test","Aerolinea xxx");
+	Empresa supermercado = new Empresa("facebook@superpirulo.test","Super Pirulo");
 
 	@Before
 	public void setUp() throws PersistenceException {
@@ -42,7 +42,7 @@ public class EmpresaDaoTests {
 	@Test
 	public void testQueSePuedeBuscarUnEmpresa() throws PersistenceException {
 
-		Empresa empresaEncontrado = dao.findById(aerolinea.getId_Empresa());
+		Empresa empresaEncontrado = dao.findByEmail(aerolinea.getEmail());
 
 		assertNotNull("el empresa con id 2 debe existir", empresaEncontrado);
 		assertEquals("el empresa 2 tiene nombre: Aerolinea xxx", "Aerolinea xxx", empresaEncontrado.getRazon_Social());
@@ -52,22 +52,22 @@ public class EmpresaDaoTests {
 	@Test
 	public void testQueSePuedeInsertarUnEmpresa() throws PersistenceException {
 
-		Empresa libreria = new Empresa (1,"libreria pixel");
+		Empresa libreria = new Empresa ("facebook@libreriapixel.test","libreria pixel");
 		assertEquals("antes de insertar hay 2 empresas", 2, dao.findAll().size());
 
 		dao.insert(libreria);
 		assertEquals("luego de insertar hay 3 empresas", 3, dao.findAll().size());
-		assertNotNull("que existe un empresa con ese id", dao.findById(libreria.getId_Empresa()));
+		assertNotNull("que existe un empresa con ese id", dao.findByEmail(libreria.getEmail()));
 
 	}
 	
 	@Test
 	public void testQueSePuedeBorrarUnEmpresa() throws PersistenceException {
 
-		Empresa empresaEncontrado = dao.findById(aerolinea.getId_Empresa());
+		Empresa empresaEncontrado = dao.findByEmail(aerolinea.getEmail());
 		dao.delete(empresaEncontrado);
 
-		empresaEncontrado = dao.findById(1);
+		empresaEncontrado = dao.findByEmail("facebook@aerolineaxxx.test");
 		assertNull("el empresa con ese id no deberia existir", empresaEncontrado);
 
 	}
@@ -75,7 +75,7 @@ public class EmpresaDaoTests {
 	@Test
 	public void testQueSePuedeActualizarUnEmpresa() throws PersistenceException {
 
-		Empresa empresaEncontrado = dao.findById(aerolinea.getId_Empresa());
+		Empresa empresaEncontrado = dao.findByEmail(aerolinea.getEmail());
 		assertEquals("la persona con id 1 se llama Aerolinea xxx", "Aerolinea xxx", empresaEncontrado.getRazon_Social());
 		empresaEncontrado.setRazon_Social("Aerolinea Lan");
 		dao.update(empresaEncontrado);

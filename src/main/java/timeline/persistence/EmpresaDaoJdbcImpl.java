@@ -29,10 +29,10 @@ public class EmpresaDaoJdbcImpl implements EmpresaDao { // este es el que implem
 		try {
 			tx.begin(); //comienza la transaccion
 			//esto es un prepareStatement
-			String query = "insert into Empresa (id_Empresa, razon_Social) values (?, ?)";
+			String query = "insert into Empresa (email, razon_Social) values (?, ?)";
 			PreparedStatement statement = TransactionJdbcImpl.getInstance()
 					.getConnection().prepareStatement(query);
-			statement.setInt(1, empresa.getId_Empresa()); // en el punto1, pone lo que te viene de persona.getId();
+			statement.setString(1, empresa.getEmail()); // en el punto1, pone lo que te viene de persona.getId();
 			statement.setString(2, empresa.getRazon_Social());
 
 			statement.executeUpdate();
@@ -59,9 +59,9 @@ public class EmpresaDaoJdbcImpl implements EmpresaDao { // este es el que implem
 		try {
 			tx.begin();
 
-			String query = "delete from Empresa where id_Empresa = ?";
+			String query = "delete from Empresa where email = ?";
 			PreparedStatement statement = conn.prepareStatement(query);
-			statement.setInt(1, empresa.getId_Empresa());
+			statement.setString(1, empresa.getEmail());
 			statement.executeUpdate();
 
 			tx.commit();
@@ -80,12 +80,12 @@ public class EmpresaDaoJdbcImpl implements EmpresaDao { // este es el que implem
 	@Override
 	public void update(Empresa empresa) throws PersistenceException {
 		try {
-			String query = "update Empresa set razon_Social = ? where id_Empresa = ?";
+			String query = "update Empresa set razon_Social = ? where email = ?";
 
 			PreparedStatement statement = TransactionJdbcImpl.getInstance()
 					.getConnection().prepareStatement(query);
 			statement.setString(1, empresa.getRazon_Social());
-			statement.setInt(2, empresa.getId_Empresa());
+			statement.setString(2, empresa.getEmail());
 			statement.executeUpdate();
 		} catch (SQLException sqlException) {
 			throw new PersistenceException(sqlException);
@@ -109,17 +109,17 @@ public class EmpresaDaoJdbcImpl implements EmpresaDao { // este es el que implem
 	}
 
 	@Override
-	public Empresa findById(Integer id_Empresa) throws PersistenceException {
-		if (id_Empresa == null) {
+	public Empresa findByEmail(String email) throws PersistenceException {
+		if (email == "") {
 			throw new IllegalArgumentException(
-					"El id de empresa no debe ser nulo");
+					"El e-mail de una empresa no debe ser nulo");
 		}
 		Empresa empresa = null;
 		try {
 			Connection c = ConnectionProvider.getInstance().getConnection();
-			String query = "select * from Empresa where id_Empresa = ?";
+			String query = "select * from Empresa where email = ?";
 			PreparedStatement statement = c.prepareStatement(query);
-			statement.setInt(1, id_Empresa);
+			statement.setString(1, email);
 			ResultSet resultSet = statement.executeQuery();
 			if (resultSet.next()) {
 				empresa = convertOne(resultSet);
@@ -131,7 +131,7 @@ public class EmpresaDaoJdbcImpl implements EmpresaDao { // este es el que implem
 	}
 
 	private Empresa convertOne(ResultSet resultSet) throws SQLException {
-		Empresa retorno = new Empresa(resultSet.getInt("id_Empresa"),resultSet.getString("razon_Social")); //crea la persona, le asigna los valores y la devuelve
+		Empresa retorno = new Empresa(resultSet.getString("email"),resultSet.getString("razon_Social")); //crea la persona, le asigna los valores y la devuelve
 		return retorno;
 	}
 

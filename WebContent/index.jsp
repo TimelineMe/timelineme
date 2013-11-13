@@ -15,7 +15,6 @@
 			</div>
 			<div id="menu" style="display: none;">
 				<ul>
-					<div class="notificacion"><p>5</p></div>
 					<li class="mail">
 						<a href="#" class="icono-mail"></a>
 					</li>
@@ -36,7 +35,7 @@
 				<img src="img/perfil.png" alt="" /> <p>Hola usuario</p>
 			</div>
 			<div id="login">
-				<form action="jsp/index.jsp" method="post" name="formLogin">
+				<form action="paginas/login.do" method="post" name="formLogin">
 					<fieldset>
 						<legend>Iniciar sesión</legend>
 						<p class="parrafoCampo"><label for="emailLogin">E-mail</label><input type="text" name="email" id="emailLogin" /></p>
@@ -50,7 +49,7 @@
 	</div>
 	<div id="contenedor">
 		<div id="registroBienvenida">
-			<h1>Bienvenido a timeline.me</h1>
+			<h1>Bienvenido a timeline.me</h1>${mensaje}
 			<p>Bienvenido a timeline.me, un sitio donde podés publicar las novedades de tu empresa, y enterarte de las novedades de las demás.</p>
 			<p><a href="paginas/altaagente.do">Alta Agente</a></p>
 			<p><a href="paginas/bienvenidoagente.do">Bienvenido agente</a></p>
