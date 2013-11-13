@@ -16,9 +16,13 @@ public class LoginService {
 	}
 	
 	public Boolean validar(String email, String password){
-		return email.equals(password);
-		/*EmpresaDao empresaDao = EmpresaDaoJdbcImpl.getInstance();
+		//return email.equals(password);
+		
+		EmpresaDao empresaDao = EmpresaDaoJdbcImpl.getInstance();
+	
 		Empresa miEmpresa = empresaDao.findByEmail(email);
+		//Empresa miEmpresa = Empresa.findByEmail(email);
+		
 		return password.equals(miEmpresa.getPassword());*/
 	}
 }

@@ -15,7 +15,7 @@ public class LoginController {
 	@RequestMapping("/login")
 	public ModelAndView authenticate(
 			@RequestParam("email") String email,
-			@RequestParam("password") String password) {
+			@RequestParam("password") String password) throws PersistenceException{
 
 		ModelAndView dispatch = null;
 
