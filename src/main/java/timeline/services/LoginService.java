@@ -15,15 +15,15 @@ public class LoginService {
 		return instance;
 	}
 	
-	public Boolean validar(String email, String password){
-		//return email.equals(password);
-		
+	public Boolean validar(String email, String password) throws PersistenceException{
 		EmpresaDao empresaDao = EmpresaDaoJdbcImpl.getInstance();
-	
 		Empresa miEmpresa = empresaDao.findByEmail(email);
-		//Empresa miEmpresa = Empresa.findByEmail(email);
-		
-		return password.equals(miEmpresa.getPassword());*/
+		if (empresaDao.findByEmail(email)==null){
+			return false;
+		}
+		else {
+			return password.equals(miEmpresa.getPassword());
+		}
 	}
 }
 

@@ -18,16 +18,9 @@ public class EmpresaService {
 	public Empresa buscarEmpresa(String email) throws PersistenceException{
 		Empresa empresa = null;
 		EmpresaDao empresaDao = EmpresaDaoJdbcImpl.getInstance();
-		empresaDao.findByEmail(email);		
+		empresa=empresaDao.findByEmail(email);		
 		return empresa;
 		
 	}
-	/*public Empresa altaEmpresa(String email){
-		Empresa empresa = null;
-		EmpresaDao empresaDao = EmpresaDaoJdbcImpl.getInstance();
-		empresaDao.insert(Empresa empresa);	
-		return empresa;
-		
-	}*/
 }
 

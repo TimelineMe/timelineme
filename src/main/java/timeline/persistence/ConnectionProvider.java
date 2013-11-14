@@ -9,7 +9,7 @@ public class ConnectionProvider {
 	private static ConnectionProvider instance;
 	private static Connection connection = null;
 	
-	private String url = "jdbc:sqlite:timeline.db"; //la url, taller.db esta en la raiz
+	private String url = "jdbc:sqlite:C:/java/workspace/TimelineMe/timeline.db"; //la url, taller.db esta en la raiz
 
 	private ConnectionProvider() throws PersistenceException {
 		try {

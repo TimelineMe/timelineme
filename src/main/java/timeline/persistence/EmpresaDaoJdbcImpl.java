@@ -131,7 +131,7 @@ public class EmpresaDaoJdbcImpl implements EmpresaDao { // este es el que implem
 	}
 
 	private Empresa convertOne(ResultSet resultSet) throws SQLException {
-		Empresa retorno = new Empresa(resultSet.getString("email"),resultSet.getString("razon_Social")); //crea la persona, le asigna los valores y la devuelve
+		Empresa retorno = new Empresa(resultSet.getString("email"),resultSet.getString("password"),resultSet.getString("razon_Social")); //crea la persona, le asigna los valores y la devuelve
 		return retorno;
 	}
 

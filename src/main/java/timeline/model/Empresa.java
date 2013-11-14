@@ -10,8 +10,9 @@ public class Empresa {
 	private String direccion;
 	private Integer telefono;
 	
-	public Empresa(String email, String razon_Social) {
+	public Empresa(String email,String password, String razon_Social) {
 		this.setEmail(email);
+		this.setPassword(password);
 		this.setRazon_Social(razon_Social);
 	}
 	public String getEmail() {
