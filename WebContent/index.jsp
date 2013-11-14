@@ -5,7 +5,9 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
 	<title>Registro</title>
-	<link rel="stylesheet" type="text/css" href="css/estilos.css" />
+		<link rel="stylesheet" type="text/css" href="css/estilos.css" />
+	
+	<link rel="stylesheet" type="text/css" href="../css/estilos.css" />
 </head>
 <body>
 	<div id="header">
@@ -59,7 +61,7 @@
 			<p><a href="paginas/perfilagente.do">Perfil Agente</a></p>
 			<p><a href="paginas/timeline.do">Timeline</a></p>
 		</div>
-		<form action="altaagente.html" method="post" id="formRegistro" enctype="multipart/form-data">
+		<form action="paginas/registro.do" method="post" id="formRegistro" enctype="multipart/form-data">
 			<fieldset>
 				<legend>Registro</legend>
 				<p><label for="email">E-mail</label><input type="text" name="email" id="email" /></p>

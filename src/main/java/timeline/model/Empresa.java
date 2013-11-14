@@ -10,10 +10,13 @@ public class Empresa {
 	private String direccion;
 	private Integer telefono;
 	
-	public Empresa(String email,String password, String razon_Social) {
+	public Empresa(String email,String password, String razon_Social, String sitio_Web,String direccion,Integer telefono) {
 		this.setEmail(email);
 		this.setPassword(password);
 		this.setRazon_Social(razon_Social);
+		this.setSitio_Web(sitio_Web);
+		this.setDireccion(direccion);
+		this.setTelefono(telefono);
 	}
 	public String getEmail() {
 		return email;

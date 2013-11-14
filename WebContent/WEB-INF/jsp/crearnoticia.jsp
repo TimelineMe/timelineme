@@ -38,7 +38,7 @@
 				<p><button type="submit">Buscar</button></p>
 			</form>
 			<div id="usuario">
-				<img src="../img/perfil.png" alt="" /> <p>Hola usuario</p>
+				<img src="../img/perfil.png" alt="" /> <p>Hola ${email}</p>
 			</div>
 		</div>
 	</div>

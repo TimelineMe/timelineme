@@ -17,8 +17,8 @@ public class EmpresaDaoTests {
 
 	EmpresaDao dao = DaoFactory.getEmpresaDao(); //devuelve un dao
 
-	Empresa aerolinea = new Empresa("facebook@aerolineaxxx.test","Aerolinea xxx");
-	Empresa supermercado = new Empresa("facebook@superpirulo.test","Super Pirulo");
+	Empresa aerolinea = new Empresa("facebook@aerolineaxxx.test",null,"Aerolinea xxx",  null, null, 123);
+	Empresa supermercado = new Empresa("facebook@superpirulo.test", null,"Super Pirulo", null, null, 123);
 
 	@Before
 	public void setUp() throws PersistenceException {
@@ -52,7 +52,7 @@ public class EmpresaDaoTests {
 	@Test
 	public void testQueSePuedeInsertarUnEmpresa() throws PersistenceException {
 
-		Empresa libreria = new Empresa ("facebook@libreriapixel.test","libreria pixel");
+		Empresa libreria = new Empresa ("facebook@libreriapixel.test", null,"libreria pixel", null, null, 253);
 		assertEquals("antes de insertar hay 2 empresas", 2, dao.findAll().size());
 
 		dao.insert(libreria);

@@ -29,11 +29,15 @@ public class EmpresaDaoJdbcImpl implements EmpresaDao { // este es el que implem
 		try {
 			tx.begin(); //comienza la transaccion
 			//esto es un prepareStatement
-			String query = "insert into Empresa (email, razon_Social) values (?, ?)";
+			String query = "insert into Empresa (email, password, razon_Social, sitio_Web, direccion, telefono) values (?, ?, ?, ?, ?, ?)";
 			PreparedStatement statement = TransactionJdbcImpl.getInstance()
 					.getConnection().prepareStatement(query);
-			statement.setString(1, empresa.getEmail()); // en el punto1, pone lo que te viene de persona.getId();
-			statement.setString(2, empresa.getRazon_Social());
+			statement.setString(1, empresa.getEmail()); 
+			statement.setString(2, empresa.getPassword());
+			statement.setString(3, empresa.getRazon_Social());
+			statement.setString(4, empresa.getSitio_Web());
+			statement.setString(5, empresa.getDireccion());
+			statement.setInt(6, empresa.getTelefono());
 
 			statement.executeUpdate();
 
@@ -131,7 +135,7 @@ public class EmpresaDaoJdbcImpl implements EmpresaDao { // este es el que implem
 	}
 
 	private Empresa convertOne(ResultSet resultSet) throws SQLException {
-		Empresa retorno = new Empresa(resultSet.getString("email"),resultSet.getString("password"),resultSet.getString("razon_Social")); //crea la persona, le asigna los valores y la devuelve
+		Empresa retorno = new Empresa(resultSet.getString("email"),resultSet.getString("password"),resultSet.getString("razon_Social"),resultSet.getString("sitio_web"),resultSet.getString("direccion"),resultSet.getInt("telefono")); //crea la persona, le asigna los valores y la devuelve
 		return retorno;
 	}
 

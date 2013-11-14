@@ -17,8 +17,8 @@ public class AgenteDaoTests {
 
 	AgenteDao dao = DaoFactory.getAgenteDao(); //devuelve un dao
 
-	Agente andres = new Agente("andres@gmail.com","andres");
-	Agente marcos = new Agente("marcos@gmail.com","marcos");
+	Agente andres = new Agente("andres@gmail.com","andres", null, null, null, null);
+	Agente marcos = new Agente("marcos@gmail.com","marcos", null, null, null, null);
 
 	@Before
 	public void setUp() throws PersistenceException {
@@ -52,7 +52,7 @@ public class AgenteDaoTests {
 	@Test
 	public void testQueSePuedeInsertarUnAgente() throws PersistenceException {
 
-		Agente arte = new Agente ("alicia@gmail.com","alicia");
+		Agente arte = new Agente ("alicia@gmail.com","alicia", null, null, null, null);
 		assertEquals("antes de insertar hay 2 agentes", 2, dao.findAll().size());
 
 		dao.insert(arte);
