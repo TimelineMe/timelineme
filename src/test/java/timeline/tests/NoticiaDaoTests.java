@@ -17,8 +17,8 @@ public class NoticiaDaoTests {
 	
 	NoticiaDao dao = DaoFactory.getNoticiaDao();
 	
-	Noticia PerroMuerto = new Noticia(1,"Perro muere atropellado");
-	Noticia LadronCapturado = new Noticia(2,"Ladron profugo recapturado");
+	Noticia PerroMuerto = new Noticia(1,"Perro muere atropellado", null, null, null);
+	Noticia LadronCapturado = new Noticia(2,"Ladron profugo recapturado", null, null, null);
 	
 	@Before
 	public void setUp() throws PersistenceException {
@@ -48,7 +48,7 @@ public class NoticiaDaoTests {
 	
 	@Test
 	public void InsertarUnaNoticia() throws PersistenceException{
-		Noticia Obni = new Noticia(3,"obni visto en mendoza");
+		Noticia Obni = new Noticia(3,"obni visto en mendoza", null, null, null);
 		assertEquals("chequeamos que existen 2 noticias ante de insertar",2,dao.findAll().size());
 		
 		dao.insert(Obni);

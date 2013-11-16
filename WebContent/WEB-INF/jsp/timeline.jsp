@@ -22,7 +22,7 @@
 					<li class="configuracion">
 						<a href="#" class="icon-cogs"></a>
 						<ul>
-							<li><a href="altaagente.do">Alta de Agentes</a></li>
+							<!--<li><a href="altaagente.do">Alta de Agentes</a></li>-->
 							<li><a href="perfilagente.do">Perfil</a></li>
 							<li><a href="empresasquesigo.do">Empresas que sigo</a></li>
 							<li><a href="crearnoticia.do">Crear una noticia</a></li>
@@ -38,7 +38,7 @@
 				<p><button type="submit">Buscar</button></p>
 			</form>
 			<div id="usuario">
-				<img src="img/perfil.png" alt="" /> <p>Hola usuario</p>
+				<img src="img/perfil.png" alt="" /> <p>Hola ${agente}</p>
 			</div>
 		</div>
 	</div>

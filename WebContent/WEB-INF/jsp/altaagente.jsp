@@ -22,7 +22,7 @@
 					<li class="configuracion">
 						<a href="#" class="icon-cogs"></a>
 						<ul>
-							<li><a href="altaagente.do">Alta de Agentes</a></li>
+							<!--<li><a href="altaagente.do">Alta de Agentes</a></li>-->
 							<li><a href="perfilagente.do">Perfil</a></li>
 							<li><a href="empresasquesigo.do">Empresas que sigo</a></li>
 							<li><a href="crearnoticia.do">Crear una noticia</a></li>
@@ -38,13 +38,13 @@
 				<p><button type="submit">Buscar</button></p>
 			</form>
 			<div id="usuario">
-				<img src="../img/perfil.png" alt="" /> <p>Hola ${empresa}</p>
+				<img src="../img/perfil.png" alt="" /> <p>Hola ${agente}</p>
 			</div>
 		</div>
 	</div>
 	<div id="contenedor">
 		<div id="registroBienvenida">
-			<h1>Bienvenido ${empresa} a timeline.me</h1>
+			<h1>Bienvenido ${email} a timeline.me</h1>
 			<p>Para poder empezar a publicar, tenés que dar de alta un agente.</p>
 		</div>
 		<form action="" method="post" id="formRegistroAgente" enctype="multipart/form-data">

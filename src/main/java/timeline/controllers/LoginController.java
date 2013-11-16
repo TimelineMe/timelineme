@@ -10,7 +10,7 @@ import timeline.persistence.PersistenceException;
 import timeline.services.LoginService;
 @Controller
 @RequestMapping("/paginas")
-@SessionAttributes("email")
+@SessionAttributes("agente")
 public class LoginController {
 
 	LoginService loginService = new LoginService();
@@ -24,11 +24,11 @@ public class LoginController {
 
 		if (loginService.validar(email, password)) {
 			ModelAndView modelAndView = new ModelAndView();
-			modelAndView.addObject("email", email);
+			modelAndView.addObject("agente", email);
 			modelAndView.setViewName("bienvenidoagente");
 			return modelAndView;
 		} else {
-			reenvio = new ModelAndView("../../index", "mensaje", "Contraseña incorrecta, o usuario no valido");
+			reenvio = new ModelAndView("index2", "mensaje", "Contraseña incorrecta, o usuario no valido");
 		}
 
 		return reenvio;

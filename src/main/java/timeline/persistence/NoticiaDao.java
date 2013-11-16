@@ -15,4 +15,8 @@ public interface NoticiaDao {
 	public Noticia findByID(Integer id_noticia) throws PersistenceException;
 	
 	public List<Noticia> findAll() throws PersistenceException;
+	
+	public List<Noticia> findbyAutor(String emailAutor) throws PersistenceException;
+	
+	public List<Noticia> findbyEmpresa(String emailEmpresa) throws PersistenceException;
 }

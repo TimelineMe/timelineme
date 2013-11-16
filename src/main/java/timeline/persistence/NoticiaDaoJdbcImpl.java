@@ -120,7 +120,46 @@ public class NoticiaDaoJdbcImpl implements NoticiaDao {
 		return lista;
 	}
 	private Noticia convertOne(ResultSet resultSet) throws SQLException {
-		Noticia retorno = new Noticia(resultSet.getInt("id_noticia"),resultSet.getString("titulo")); //duda sobre esto
+		Noticia retorno = new Noticia(resultSet.getInt("id_noticia"),resultSet.getString("titulo"),resultSet.getString("contenido"),resultSet.getString("fecha_hora"),resultSet.getString("autor")); //duda sobre esto
+		return retorno;
+	}
+	@Override
+	public List<Noticia> findbyAutor(String emailAutor) throws PersistenceException {
+		List<Noticia> lista = new LinkedList<Noticia>();
+		try{
+			String query = "select * from Noticia INNER JOIN Agente ON(Noticia.autor=Agente.email) where autor=emailAutor";
+			PreparedStatement statement = ConnectionProvider.getInstance().getConnection().prepareStatement(query);
+			ResultSet resultSet = statement.executeQuery();
+			while(resultSet.next()){
+				lista.add(convertOne1(resultSet));
+			}
+		}catch(SQLException sqlException){
+			throw new PersistenceException(sqlException);
+		}
+		return lista;
+	}
+	private Noticia convertOne1(ResultSet resultSet) throws SQLException {
+		Noticia retorno = new Noticia(resultSet.getInt("id_noticia"),resultSet.getString("titulo"),resultSet.getString("contenido"),resultSet.getString("fecha_hora"),resultSet.getString("autor")); 
+		return retorno;
+	}
+	@Override
+	public List<Noticia> findbyEmpresa(String emailEmpresa)
+			throws PersistenceException {
+		List<Noticia> lista = new LinkedList<Noticia>();
+		try{
+			String query = "select * from Noticia INNER JOIN Agente ON(Noticia.autor=Agente.email) INNER JOIN Empresa ON (Agente.empresa  =  Empresa.email_Empresa) where Autor.empresa=emailEmpresa";
+			PreparedStatement statement = ConnectionProvider.getInstance().getConnection().prepareStatement(query);
+			ResultSet resultSet = statement.executeQuery();
+			while(resultSet.next()){
+				lista.add(convertOne11(resultSet));
+			}
+		}catch(SQLException sqlException){
+			throw new PersistenceException(sqlException);
+		}
+		return lista;
+	}
+	private Noticia convertOne11(ResultSet resultSet) throws SQLException {
+		Noticia retorno = new Noticia(resultSet.getInt("id_noticia"),resultSet.getString("titulo"),resultSet.getString("contenido"),resultSet.getString("fecha_hora"),resultSet.getString("autor")); 
 		return retorno;
 	}
 }

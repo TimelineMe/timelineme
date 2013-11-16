@@ -227,6 +227,12 @@ form#headerFormBuscar button:hover, form#headerFormBuscar button:focus {
 #contenedor:after, ul#botonesQueHacer:after {
 	clear: both;
 }
+.error {
+	font-weight: bold;
+	color: #AE1B1E;
+	border: 2px solid #AE1B1E;
+	padding: 8px;
+}
 #registroBienvenida, form#formRegistro, form#formRegistroAgente {
 	width: 49%;
 }

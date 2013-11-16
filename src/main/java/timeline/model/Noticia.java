@@ -1,18 +1,21 @@
 package timeline.model;
 
+
 public class Noticia {
 	private Integer id_noticia;
 	private String titulo;
 	private String contenido;
-	private Integer fecha;
-	private Integer hora;
+	private String fecha_Hora;
 	private String autor;
 
 	
 
-	public Noticia(Integer id,String tit) {
-	 this.setId(id);
-	 this.setTitulo(tit);
+	public Noticia(Integer id_noticia,String titulo,String contenido,String fecha_Hora, String autor) {
+	 this.setId(id_noticia); 
+	 this.setTitulo(titulo);
+	 this.setContenido(contenido);
+	 this.setFecha(fecha_Hora);
+	 this.setAutor(autor);
 	}
 
 	public void setId(Integer id){
@@ -39,20 +42,12 @@ public class Noticia {
 		return this.contenido;
 	}
 	
-	public void setFecha(Integer date){
-		this.fecha = date;
+	public void setFecha(String fecha_Hora){
+		this.fecha_Hora = fecha_Hora;
 	}
 	
-	public Integer getFecha(){
-		return this.fecha;
-	}
-	
-	public void setHora(Integer hora){
-		this.hora = hora;
-	}
-	
-	public Integer getHora(){
-		return this.hora;
+	public String getFecha(){
+		return this.fecha_Hora;
 	}
 	
 	public void setAutor(String autor){
