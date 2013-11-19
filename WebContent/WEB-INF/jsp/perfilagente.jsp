@@ -11,7 +11,7 @@
 	<div id="header">
 		<div id="menucont">
 			<div id="logo">
-				<a href="../index.jsp"><img src="../img/timeline_me.png" alt="" /></a>
+				<a href="bienvenidoagente.do"><img src="../img/timeline_me.png" alt="" /></a>
 			</div>
 			<div id="menu">
 				<div class="notificacion"><p>5</p></div>
@@ -26,6 +26,7 @@
 							<li><a href="perfilagente.do">Perfil</a></li>
 							<li><a href="empresasquesigo.do">Empresas que sigo</a></li>
 							<li><a href="crearnoticia.do">Crear una noticia</a></li>
+							<li><a href="resultadosbusqueda.do">Buscar Empresas</a></li>
 						</ul>
 					</li>
 					<li class="salir">
@@ -44,18 +45,18 @@
 	</div>
 	<div id="contenedor">
 		<div id="headerEmpresa">
-			<h2>Nombre Agente</h2>
+			<h2>${miAgente.nombre}</h2>
 			<p id="fotoEmpresa"><img src="../img/perfil.jpg" width="200" height="200" /></p>
 			<ul>
-				<li>Cargo: Desarrollador Web</li>
-				<li>Empresa: timeline.me</li>
-				<li>E-mail: <a href="mailto:info@timelineme.com.ar">info@timelineme.com.ar</a></li>
+				<li>Cargo: ${miAgente.cargo}</li>
+				<li>Empresa: <a href="timeline.do?empresa=${miEmpresa.email}">${miEmpresa.razon_Social}</a></li>
+				<li>E-mail: <a href="mailto:${miAgente.email_Agente}">${miAgente.email_Agente}</a></li>
 			</ul>
 		</div>
 		<div id="contenido">
 			<h1>Perfil</h1>
 			<h2>Descripción</h2>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+			<p>${miAgente.descripcion}</p>
 		</div>
 	</div>
 	<div id="footer">

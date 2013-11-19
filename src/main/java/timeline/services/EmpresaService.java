@@ -1,9 +1,11 @@
 package timeline.services;
 
-/*import timeline.model.Empresa;
+import java.util.List;
+
+import timeline.model.Empresa;
+import timeline.persistence.DaoFactory;
 import timeline.persistence.EmpresaDao;
-import timeline.persistence.EmpresaDaoJdbcImpl;
-import timeline.persistence.PersistenceException;*/
+import timeline.persistence.PersistenceException;
 
 public class EmpresaService {
 	private static EmpresaService instance;
@@ -14,12 +16,14 @@ public class EmpresaService {
 		}
 		return instance;
 	}
+	public List<Empresa> findAllEmpresas() throws PersistenceException {
+		EmpresaDao empresasDao = DaoFactory.getEmpresaDao();
+		return empresasDao.findAll();
+	}
 	
-/*	public Empresa insertarEmpresa(String email) throws PersistenceException{
-		EmpresaDao empresaDao = EmpresaDaoJdbcImpl.getInstance();
-		Empresa empresa = empresaDao.insert(empresa)
-		return empresa;
-		
-	}*/
+	public Empresa findByEmail(String email) throws PersistenceException {
+		EmpresaDao miEmpresaDao = DaoFactory.getEmpresaDao();
+		return miEmpresaDao.findByEmail(email);
+	}
 }
 

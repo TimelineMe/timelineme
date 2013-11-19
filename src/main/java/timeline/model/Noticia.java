@@ -2,7 +2,7 @@ package timeline.model;
 
 
 public class Noticia {
-	private Integer id_noticia;
+	private Integer id_Noticia;
 	private String titulo;
 	private String contenido;
 	private String fecha_Hora;
@@ -10,8 +10,8 @@ public class Noticia {
 
 	
 
-	public Noticia(Integer id_noticia,String titulo,String contenido,String fecha_Hora, String autor) {
-	 this.setId(id_noticia); 
+	public Noticia(Integer id_Noticia,String titulo,String contenido,String fecha_Hora, String autor) {
+	 this.setId(id_Noticia); 
 	 this.setTitulo(titulo);
 	 this.setContenido(contenido);
 	 this.setFecha(fecha_Hora);
@@ -19,11 +19,11 @@ public class Noticia {
 	}
 
 	public void setId(Integer id){
-		this.id_noticia = id;
+		this.id_Noticia = id;
 	}
 	
 	public Integer getId(){
-		return this.id_noticia;
+		return this.id_Noticia;
 	}
 	
 	public void setTitulo(String titulo){

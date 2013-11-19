@@ -20,7 +20,7 @@ public class NoticiaDaoTests {
 	Noticia PerroMuerto = new Noticia(1,"Perro muere atropellado", null, null, null);
 	Noticia LadronCapturado = new Noticia(2,"Ladron profugo recapturado", null, null, null);
 	
-	@Before
+	/*@Before
 	public void setUp() throws PersistenceException {
 		//borramos todas las noticias para iniciar con la BDD vacia
 		for(Noticia cadaUna:dao.findAll()){//trae la lista completa
@@ -79,6 +79,17 @@ public class NoticiaDaoTests {
 	public void BuscarTodasLasNoticias() throws PersistenceException{
 		List <Noticia> TodasLasNoticias = dao.findAll();
 		assertEquals("tiene que haber 2 noticias en la BDD",2,TodasLasNoticias.size());
+	}*/
+	
+	@Test
+	public void BuscarLasNoticasdeUnAutor() throws PersistenceException{
+		List <Noticia> TodasLasNoticias = dao.findbyAutor("leandroandres1@gmail.com");
+		assertEquals("tiene que haber 3 noticias en la BDD",3,TodasLasNoticias.size());
 	}
 	
+	@Test
+	public void BuscarLasNoticasdeUnaEmpresa() throws PersistenceException{
+		List <Noticia> TodasLasNoticias = dao.findbyEmpresa("prueba@prueba.com.ar");
+		assertEquals("tiene que haber 1 noticias en la BDD",1,TodasLasNoticias.size());
+	}
 }

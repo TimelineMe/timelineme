@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
@@ -17,7 +18,7 @@
 				<div class="notificacion"><p>5</p></div>
 				<ul>
 					<li class="mail">
-						<a href="notificaciones.html" class="icono-mail"></a>
+						<a href="notificaciones.do" class="icono-mail"></a>
 					</li>
 					<li class="configuracion">
 						<a href="#" class="icon-cogs"></a>
@@ -26,6 +27,7 @@
 							<li><a href="perfilagente.do">Perfil</a></li>
 							<li><a href="empresasquesigo.do">Empresas que sigo</a></li>
 							<li><a href="crearnoticia.do">Crear una noticia</a></li>
+							<li><a href="resultadosbusqueda.do">Buscar Empresas</a></li>
 						</ul>
 					</li>
 					<li class="salir">
@@ -46,10 +48,9 @@
 		<div id="contenido">
 			<h1>Resultados de búsqueda</h1>
 			<ul id="resultadosBusqueda">
-				<li><a href="timeline.do">timeline.me</a> <a href="empresasquesigo.do" class="btnSeguir">Seguir</a></li>
-				<li><a href="timeline.do">Hola mundo!</a> <a href="empresasquesigo.do" class="btnSeguir">Seguir</a></li>
-				<li><a href="timeline.do">Hola mundo loco!</a> <a href="empresasquesigo.do" class="btnSeguir">Seguir</a></li>
-				<li><a href="timeline.do">No se me ocurre nada</a> <a href="empresasquesigo.do" class="btnSeguir">Seguir</a></li>
+				<c:forEach items="${misEmpresas}" var="unaEmpresa">
+					<li><a href="timeline.do?empresa=${unaEmpresa.email}">${unaEmpresa.razon_Social}</a> <a href="empresasquesigo.do" class="btnSeguir">Seguir</a></li>
+				</c:forEach>
 			</ul>
 		</div>
 	</div>

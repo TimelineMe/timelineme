@@ -124,42 +124,48 @@ public class NoticiaDaoJdbcImpl implements NoticiaDao {
 		return retorno;
 	}
 	@Override
-	public List<Noticia> findbyAutor(String emailAutor) throws PersistenceException {
-		List<Noticia> lista = new LinkedList<Noticia>();
-		try{
-			String query = "select * from Noticia INNER JOIN Agente ON(Noticia.autor=Agente.email) where autor=emailAutor";
-			PreparedStatement statement = ConnectionProvider.getInstance().getConnection().prepareStatement(query);
-			ResultSet resultSet = statement.executeQuery();
-			while(resultSet.next()){
-				lista.add(convertOne1(resultSet));
-			}
-		}catch(SQLException sqlException){
-			throw new PersistenceException(sqlException);
-		}
-		return lista;
-	}
-	private Noticia convertOne1(ResultSet resultSet) throws SQLException {
-		Noticia retorno = new Noticia(resultSet.getInt("id_noticia"),resultSet.getString("titulo"),resultSet.getString("contenido"),resultSet.getString("fecha_hora"),resultSet.getString("autor")); 
-		return retorno;
-	}
-	@Override
-	public List<Noticia> findbyEmpresa(String emailEmpresa)
+	public List<Noticia> findbyEmpresa(String pemailEmpresa)
 			throws PersistenceException {
 		List<Noticia> lista = new LinkedList<Noticia>();
 		try{
-			String query = "select * from Noticia INNER JOIN Agente ON(Noticia.autor=Agente.email) INNER JOIN Empresa ON (Agente.empresa  =  Empresa.email_Empresa) where Autor.empresa=emailEmpresa";
-			PreparedStatement statement = ConnectionProvider.getInstance().getConnection().prepareStatement(query);
+				Connection c = ConnectionProvider.getInstance().getConnection();
+				String query = "select * from Noticia INNER JOIN Agente ON(Noticia.autor=Agente.email_Agente) INNER JOIN Empresa ON (Agente.empresa  =  Empresa.email) where Empresa.email=?";
+				PreparedStatement statement = c.prepareStatement(query);
+				statement.setString(1, pemailEmpresa);
+				ResultSet resultSet = statement.executeQuery();
+				while(resultSet.next()){
+					lista.add(convertOne1(resultSet));
+				}
+			}catch(SQLException sqlException){
+				throw new PersistenceException(sqlException);
+			}
+			return lista;
+		}
+		private Noticia convertOne1(ResultSet resultSet) throws SQLException {
+			Noticia retorno = new Noticia(resultSet.getInt("id_Noticia"),resultSet.getString("titulo"),resultSet.getString("contenido"),resultSet.getString("fecha_hora"),resultSet.getString("autor")); //duda sobre esto
+			return retorno;
+	}
+	
+	@Override
+	public List<Noticia> findbyAutor(String emailAutor)
+			throws PersistenceException {
+		List<Noticia> lista = new LinkedList<Noticia>();
+		try{
+			Connection c = ConnectionProvider.getInstance().getConnection();
+			String query = "select * from Noticia where autor=?";
+			PreparedStatement statement = c.prepareStatement(query);
+			statement.setString(1, emailAutor);
 			ResultSet resultSet = statement.executeQuery();
 			while(resultSet.next()){
-				lista.add(convertOne11(resultSet));
+				lista.add(convertOne2(resultSet));
 			}
 		}catch(SQLException sqlException){
 			throw new PersistenceException(sqlException);
 		}
 		return lista;
 	}
-	private Noticia convertOne11(ResultSet resultSet) throws SQLException {
-		Noticia retorno = new Noticia(resultSet.getInt("id_noticia"),resultSet.getString("titulo"),resultSet.getString("contenido"),resultSet.getString("fecha_hora"),resultSet.getString("autor")); 
+	private Noticia convertOne2(ResultSet resultSet) throws SQLException {
+		Noticia retorno = new Noticia(resultSet.getInt("id_Noticia"),resultSet.getString("titulo"),resultSet.getString("contenido"),resultSet.getString("fecha_hora"),resultSet.getString("autor")); //duda sobre esto
 		return retorno;
 	}
 }

@@ -26,6 +26,7 @@
 							<li><a href="perfilagente.do">Perfil</a></li>
 							<li><a href="empresasquesigo.do">Empresas que sigo</a></li>
 							<li><a href="crearnoticia.do">Crear una noticia</a></li>
+							<li><a href="resultadosbusqueda.do">Buscar Empresas</a></li>
 						</ul>
 					</li>
 					<li class="salir">

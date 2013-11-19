@@ -17,7 +17,6 @@ public class AgenteService {
 	
 	
 	public Agente findByEmail(String email) throws PersistenceException {
-		
 		AgenteDao miAgenteDao = DaoFactory.getAgenteDao();
 		return miAgenteDao.findByEmail(email);
 	}

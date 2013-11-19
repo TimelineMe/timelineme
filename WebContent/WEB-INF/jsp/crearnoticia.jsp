@@ -11,7 +11,7 @@
 	<div id="header">
 		<div id="menucont">
 			<div id="logo">
-				<a href="../index.html"><img src="../img/timeline_me.png" alt="" /></a>
+				<a href="bienvenidoagente.do"><img src="../img/timeline_me.png" alt="" /></a>
 			</div>
 			<div id="menu">
 				<div class="notificacion"><p>5</p></div>
@@ -26,6 +26,7 @@
 							<li><a href="perfilagente.do">Perfil</a></li>
 							<li><a href="empresasquesigo.do">Empresas que sigo</a></li>
 							<li><a href="crearnoticia.do">Crear una noticia</a></li>
+							<li><a href="resultadosbusqueda.do">Buscar Empresas</a></li>
 						</ul>
 					</li>
 					<li class="salir">
