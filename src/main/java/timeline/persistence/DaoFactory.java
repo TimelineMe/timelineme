@@ -11,4 +11,7 @@ public class DaoFactory {
 	public static NoticiaDao getNoticiaDao(){
 		return NoticiaDaoJdbcImpl.getInstance();
 	}
+	public static AgenteEmpresaDao getAgenteEmpresaDao(){
+		return AgenteEmpresaDaoJdbcImpl.getInstance();
+	}
 }

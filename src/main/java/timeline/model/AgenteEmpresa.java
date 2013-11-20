@@ -4,23 +4,23 @@ public class AgenteEmpresa {
 	private String empresa;
 	private String agente;
 	
-	public AgenteEmpresa(String agente, String empresa) {
-		this.setDirAgente(agente);
-		this.setDirEmpresa(empresa);
+	public AgenteEmpresa(String empresa, String agente) {
+		this.setEmpresa(empresa);
+		this.setAgente(agente);
 		
 	}
-	public void setDirEmpresa(String empresa){
+	public void setEmpresa(String empresa){
 		this.empresa = empresa;
 	}
 	
-	public String getDirEmpresa(){
+	public String getEmpresa(){
 		return this.empresa;
 	}
 	
-	public void setDirAgente(String agente){
+	public void setAgente(String agente){
 		this.agente = agente;
 	}
-	public String getDirAgente(){
+	public String getAgente(){
 		return this.agente;
 	}
 

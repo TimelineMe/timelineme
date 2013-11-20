@@ -51,8 +51,8 @@
 			<ul>
 				<li>Dirección: ${miEmpresa.direccion}</li>
 				<li>Teléfono: ${miEmpresa.telefono}</li>
-				<li>Sitio Web: <a href="http://www.timelineme.com.ar/">${miEmpresa.sitio_Web}</a></li>
-				<li>E-mail: <a href="mailto:info@timelineme.com.ar">${miEmpresa.email}</a></li>
+				<li>Sitio Web: <a href="http://${miEmpresa.sitio_Web}">${miEmpresa.sitio_Web}</a></li>
+				<li>E-mail: <a href="mailto:${miEmpresa.email}">${miEmpresa.email}</a></li>
 			</ul>
 			<p id="headerEmpresaBtnSeguir"><a href="timeline.html">Seguir</a></p>
 		</div>
@@ -61,7 +61,7 @@
 			<div class="noticia">
 				<h2>${unaNoticia.titulo}</h2>
 				<p>${unaNoticia.contenido}</p>
-				<p class="noticiaPublicadaPor">Publicada por Admin el 2013-11-02 a las 15:17</p>
+				<p class="noticiaPublicadaPor">Publicada por <a href="perfilagente.do?agente=${unaNoticia.autor}">${unaNoticia.autor}</a> el ${unaNoticia.fecha}</p>
 			</div>
 		</c:forEach>
 	</div>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
@@ -47,10 +48,9 @@
 		<div id="contenido">
 			<h1>Empresas que sigo</h1>
 			<ul id="listaEmpresasQueSigo">
-				<li><a href="timeline.do">timeline.me</a> <a href="empresasquesigo.do" class="btnDejarDeSeguir">Dejar de seguir</a></li>
-				<li><a href="timeline.do">Hola mundo!</a> <a href="empresasquesigo.do" class="btnDejarDeSeguir">Dejar de seguir</a></li>
-				<li><a href="timeline.do">Hola mundo loco!</a> <a href="empresasquesigo.do" class="btnDejarDeSeguir">Dejar de seguir</a></li>
-				<li><a href="timeline.do">No se me ocurre nada</a> <a href="empresasquesigo.do" class="btnDejarDeSeguir">Dejar de seguir</a></li>
+				<c:forEach items="${misEmpresasSeguidas}" var="unaEmpresaSeguida">
+				<li><a href="timeline.do?empresa=${unaEmpresaSeguida.empresa}">${unaEmpresaSeguida.empresa}</a><a href="empresasquesigo.do" class="btnDejarDeSeguir">Dejar de seguir</a></li>
+				</c:forEach>
 			</ul>
 		</div>
 	</div>

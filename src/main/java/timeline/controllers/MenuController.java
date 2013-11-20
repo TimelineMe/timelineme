@@ -11,9 +11,11 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import timeline.model.Agente;
+import timeline.model.AgenteEmpresa;
 import timeline.model.Empresa;
 import timeline.model.Noticia;
 import timeline.persistence.PersistenceException;
+import timeline.services.AgenteEmpresaService;
 import timeline.services.AgenteService;
 import timeline.services.EmpresaService;
 import timeline.services.NoticiaService;
@@ -25,6 +27,7 @@ public class MenuController {
 	EmpresaService empresaService = new EmpresaService();
 	AgenteService agenteService = new AgenteService();
 	NoticiaService noticiaService = new NoticiaService();
+	AgenteEmpresaService agenteEmpresaService = new AgenteEmpresaService();
 	
 	@RequestMapping("/altaagente")
 	public ModelAndView AltaAgente() {
@@ -42,8 +45,17 @@ public class MenuController {
 	}
 
 	@RequestMapping("/empresasquesigo")
-	public ModelAndView EmpresasQueSigo() {
-		return new ModelAndView("empresasquesigo");
+	
+	public ModelAndView EmpresasQueSigo(HttpSession session)
+			throws PersistenceException {
+		ModelAndView mavPerfilAgente = new ModelAndView("empresasquesigo");
+			
+			String email = (String) session.getAttribute("agente");
+			List<AgenteEmpresa> misEmpresasSeguidas = agenteEmpresaService.findByAgente(email);
+			
+			mavPerfilAgente.addObject("misEmpresasSeguidas", misEmpresasSeguidas);
+			
+			return mavPerfilAgente;
 	}
 
 	@RequestMapping("/notificaciones")
@@ -75,6 +87,7 @@ public class MenuController {
 				"resultadosbusqueda");
 		
 		List<Empresa> misEmpresas = empresaService.findAllEmpresas();
+		//agrego objetos para enviar
 		mavResultadosEmpresas.addObject("misEmpresas", misEmpresas);
 		
 		return mavResultadosEmpresas;
