@@ -38,6 +38,11 @@ public class AgenteSigueEmpresaTests {
 		assertEquals("tiene que haber 2 empresas",2,AgentesEmpresa.size());
 	}
 	@Test
+	public void Empresa() throws PersistenceException {
+		List<Empresa> empresa = dao.findByAgente2("aliciarosenthal@gmail.com");
+		assertEquals("tiene que haber 3 empresas",3,empresa.size());
+	}
+	@Test
 	public void todos() throws PersistenceException {
 		List<AgenteEmpresa> AgentesEmpresa = dao.findAll();
 		assertEquals("tiene que haber 13 relaciones",13,AgentesEmpresa.size());

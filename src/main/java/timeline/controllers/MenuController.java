@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import timeline.model.Agente;
-import timeline.model.AgenteEmpresa;
 import timeline.model.Empresa;
 import timeline.model.Noticia;
 import timeline.persistence.PersistenceException;
@@ -51,10 +50,8 @@ public class MenuController {
 		ModelAndView mavPerfilAgente = new ModelAndView("empresasquesigo");
 			
 			String email = (String) session.getAttribute("agente");
-			List<AgenteEmpresa> misEmpresasSeguidas = agenteEmpresaService.findByAgente(email);
-			
+			List<Empresa> misEmpresasSeguidas = agenteEmpresaService.findByAgente2(email);
 			mavPerfilAgente.addObject("misEmpresasSeguidas", misEmpresasSeguidas);
-			
 			return mavPerfilAgente;
 	}
 

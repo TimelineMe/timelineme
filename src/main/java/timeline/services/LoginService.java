@@ -15,10 +15,10 @@ public class LoginService {
 		return instance;
 	}
 	
-	public Boolean validar(String email, String password) throws PersistenceException {
+	/*public Boolean validar(String email, String password) throws PersistenceException {
 		Agente agenteActual = findByEmail(email);
 		return agenteActual.getEmail_Agente().equals(email) && agenteActual.getPassword().equals(password);
-	}
+	}*/
 	
 	public Agente findByEmail(String email) throws PersistenceException{
 		AgenteService agenteSvc = new AgenteService();
@@ -26,7 +26,7 @@ public class LoginService {
 		
 	}
 	
-	/*public Boolean validar(String email, String password) throws PersistenceException{
+	public Boolean validar(String email, String password) throws PersistenceException{
 		AgenteDao agenteDao = AgenteDaoJdbcImpl.getInstance();
 		Agente miAgente = agenteDao.findByEmail(email);
 		if (agenteDao.findByEmail(email)==null){
@@ -35,7 +35,7 @@ public class LoginService {
 		else {
 			return password.equals(miAgente.getPassword());
 		}
-	}*/
+	}
 	
 }
 

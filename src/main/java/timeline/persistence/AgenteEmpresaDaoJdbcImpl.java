@@ -9,7 +9,7 @@ import java.util.List;
 
 import timeline.model.Agente;
 import timeline.model.AgenteEmpresa;
-import timeline.model.Noticia;
+import timeline.model.Empresa;
 
 public class AgenteEmpresaDaoJdbcImpl implements  AgenteEmpresaDao {
 	
@@ -88,16 +88,12 @@ public class AgenteEmpresaDaoJdbcImpl implements  AgenteEmpresaDao {
 			statement.setString(1, emailAgente);
 			ResultSet resultSet = statement.executeQuery();
 			while(resultSet.next()){
-				lista.add(convertOne2(resultSet));
+				lista.add(convertOne(resultSet));
 			}
 		}catch(SQLException sqlException){
 			throw new PersistenceException(sqlException);
 		}
 		return lista;
-	}
-	private AgenteEmpresa convertOne2(ResultSet resultSet) throws SQLException {
-		AgenteEmpresa retorno = new AgenteEmpresa(resultSet.getString("empresa"),resultSet.getString("agente")); //duda sobre esto
-		return retorno;
 	}
 
 
@@ -133,16 +129,38 @@ public class AgenteEmpresaDaoJdbcImpl implements  AgenteEmpresaDao {
 			PreparedStatement statement = ConnectionProvider.getInstance().getConnection().prepareStatement(query);
 			ResultSet resultSet = statement.executeQuery();
 			while(resultSet.next()){
-				lista.add(convertOne3(resultSet));
+				lista.add(convertOne(resultSet));
 			}
 		}catch(SQLException sqlException){
 			throw new PersistenceException(sqlException);
 		}
 		return lista;
 	}
-	private AgenteEmpresa convertOne3(ResultSet resultSet) throws SQLException {
-		AgenteEmpresa retorno = new AgenteEmpresa(resultSet.getString("empresa"),resultSet.getString("agente")); //duda sobre esto
+
+	@Override
+	public List<Empresa> findByAgente2(String emailAgente)
+			throws PersistenceException {
+		List<Empresa> lista = new LinkedList<Empresa>();
+		try {
+			Connection c = ConnectionProvider.getInstance().getConnection();
+			String query = "select * from AgenteEmpresa INNER JOIN Empresa ON (Empresa.email = AgenteEmpresa.empresa) where AgenteEmpresa.agente=?";
+			PreparedStatement statement = c.prepareStatement(query);
+			statement.setString(1, emailAgente);
+			ResultSet resultSet = statement.executeQuery();
+			while (resultSet.next()) {
+				lista.add(convertOneEmpresa(resultSet));
+			}
+		} catch (SQLException sqlException) {
+			throw new PersistenceException(sqlException);
+		}
+		return lista;		
+	}
+	private AgenteEmpresa convertOne(ResultSet resultSet) throws SQLException {
+		AgenteEmpresa retorno = new AgenteEmpresa(resultSet.getString("empresa"),resultSet.getString("agente")); 
 		return retorno;
 	}
-	
+	private Empresa convertOneEmpresa(ResultSet resultSet) throws SQLException {
+		Empresa retorno = new Empresa(resultSet.getString("email"),resultSet.getString("password"),resultSet.getString("razon_Social"),resultSet.getString("sitio_web"),resultSet.getString("direccion"),resultSet.getInt("telefono")); 
+		return retorno;
+	}
 }
