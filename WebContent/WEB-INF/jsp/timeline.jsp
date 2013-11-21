@@ -58,12 +58,21 @@
 		</div>
 		${pemailEmpresa}
 		<c:forEach items="${misNoticias}" var="unaNoticia">
-			<div class="noticia">
-				<h2>${unaNoticia.titulo}</h2>
-				<p>${unaNoticia.contenido}</p>
-				<p class="noticiaPublicadaPor">Publicada por <a href="perfilagente.do?agente=${unaNoticia.autor}">${unaNoticia.autor}</a> el ${unaNoticia.fecha}</p>
-			</div>
+		<div class="noticia">
+			<h2>${unaNoticia.titulo}</h2>
+			<p>${unaNoticia.contenido}</p>
+			<p class="noticiaPublicadaPor">Publicada por <a href="perfilautor.do?emailAgente=${unaNoticia.autor}">${unaNoticia.autor}</a> el ${unaNoticia.fecha}</p>
+		</div>
 		</c:forEach>
+		<div id="contenido">
+			<h2>Agentes que me siguen</h2>
+			<ul id="listaEmpresasQueSigo">
+				<c:forEach items="${misSeguidores}" var="unSeguidor">
+					<li><a href="perfilautor.do?emailAgente=${unSeguidor.email_Agente}">${unSeguidor.nombre}</a></li>
+				</c:forEach>
+				
+			</ul>
+		</div>
 	</div>
 	<div id="footer">
 		<p>Copyright (c) 2013 Timeline.me, taller Web (Andrés Malagreca, Alicia Rosenthal, Marcos Scalzotto).</p>

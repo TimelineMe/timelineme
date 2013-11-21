@@ -296,6 +296,7 @@ form#formRegistro fieldset, form#formRegistroAgente fieldset , #headerEmpresa, .
 }
 .noticia {
 	width: 468px;
+	height: 130px;
 	border: 1px solid #999;
 	margin: 5px;
 }

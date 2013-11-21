@@ -1,20 +1,20 @@
 package timeline.model;
 
 public class AgenteEmpresa {
-	private String empresa;
+	private String sigue_Empresa;
 	private String agente;
 	
-	public AgenteEmpresa(String empresa, String agente) {
-		this.setEmpresa(empresa);
+	public AgenteEmpresa(String sigue_Empresa, String agente) {
+		this.setSigue_Empresa(sigue_Empresa);
 		this.setAgente(agente);
 		
 	}
-	public void setEmpresa(String empresa){
-		this.empresa = empresa;
+	public void setSigue_Empresa(String empresa){
+		this.sigue_Empresa = empresa;
 	}
 	
-	public String getEmpresa(){
-		return this.empresa;
+	public String getSigue_Empresa(){
+		return this.sigue_Empresa;
 	}
 	
 	public void setAgente(String agente){

@@ -66,15 +66,30 @@ public class MenuController {
 		ModelAndView mavPerfilAgente = new ModelAndView("perfilagente");
 		
 		String email = (String) session.getAttribute("agente");
+		List<Noticia> misNoticias = noticiaService.findbyAutor(email);
 		Agente miAgente = agenteService.findByEmail(email);
-		
+				
 		String emailEmpresa = miAgente.getEmpresa();
 		Empresa miEmpresa = empresaService.findByEmail(emailEmpresa);
 		
 		mavPerfilAgente.addObject("miEmpresa", miEmpresa);
 		mavPerfilAgente.addObject("miAgente", miAgente);
-		
+		mavPerfilAgente.addObject("misNoticias", misNoticias);
 		return mavPerfilAgente;
+	}
+	
+	@RequestMapping("/perfilautor")
+	public ModelAndView PerfilAutor(@RequestParam("emailAgente") String emailAgente) throws PersistenceException {
+		ModelAndView mavPerfilAutor = new ModelAndView("perfilagente");
+		String email = emailAgente;
+		List<Noticia> misNoticias = noticiaService.findbyAutor(email);
+		Agente miAgente = agenteService.findByEmail(email);
+		String emailEmpresa = miAgente.getEmpresa();
+		Empresa miEmpresa = empresaService.findByEmail(emailEmpresa);
+		mavPerfilAutor.addObject("miEmpresa", miEmpresa);
+		mavPerfilAutor.addObject("miAgente", miAgente);
+		mavPerfilAutor.addObject("misNoticias", misNoticias);
+		return mavPerfilAutor;
 	}
 
 	@RequestMapping("/resultadosbusqueda")
@@ -99,8 +114,10 @@ public class MenuController {
 		Empresa miEmpresa = empresaService.findByEmail(emailEmpresa);
 		String pemailEmpresa = miEmpresa.getEmail();
 		List<Noticia> misNoticias = noticiaService.findbyEmpresa(pemailEmpresa);
+		List <Agente> misSeguidores = agenteEmpresaService.findByEmpresa(pemailEmpresa);
 		mavTimelineEmpresa.addObject("miEmpresa", miEmpresa);
 		mavTimelineEmpresa.addObject("misNoticias", misNoticias);
+		mavTimelineEmpresa.addObject("misSeguidores", misSeguidores);
 		return mavTimelineEmpresa;
 	}
 }

@@ -7,6 +7,7 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
+import timeline.model.Agente;
 import timeline.model.AgenteEmpresa;
 import timeline.model.Empresa;
 import timeline.persistence.AgenteEmpresaDao;
@@ -34,17 +35,17 @@ public class AgenteSigueEmpresaTests {
 	
 	@Test
 	public void AgenteSigueEmpresa() throws PersistenceException {
-		List<AgenteEmpresa> AgentesEmpresa = dao.findByAgente("leandroandres1@gmail.com");
-		assertEquals("tiene que haber 2 empresas",2,AgentesEmpresa.size());
+		List<Agente> Agentes = dao.findByEmpresa("info@timelineme.com.ar");
+		assertEquals("tiene que haber 3 empresas",3,Agentes.size());
 	}
 	@Test
 	public void Empresa() throws PersistenceException {
 		List<Empresa> empresa = dao.findByAgente2("aliciarosenthal@gmail.com");
-		assertEquals("tiene que haber 3 empresas",3,empresa.size());
+		assertEquals("tiene que haber 2 empresas",2,empresa.size());
 	}
 	@Test
 	public void todos() throws PersistenceException {
 		List<AgenteEmpresa> AgentesEmpresa = dao.findAll();
-		assertEquals("tiene que haber 13 relaciones",13,AgentesEmpresa.size());
+		assertEquals("tiene que haber 11 relaciones",11,AgentesEmpresa.size());
 	}
 }

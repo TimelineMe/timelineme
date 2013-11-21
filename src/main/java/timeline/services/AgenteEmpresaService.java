@@ -2,6 +2,7 @@ package timeline.services;
 
 import java.util.List;
 
+import timeline.model.Agente;
 import timeline.model.AgenteEmpresa;
 import timeline.model.Empresa;
 import timeline.persistence.AgenteEmpresaDao;
@@ -17,14 +18,14 @@ public class AgenteEmpresaService {
 		}
 		return instance;
 	}
-	public List<AgenteEmpresa> findByAgente(String emailAgente) throws PersistenceException {
-		AgenteEmpresaDao AEDao = DaoFactory.getAgenteEmpresaDao();
-		return AEDao.findByAgente(emailAgente);
-	}
 	public List<Empresa> findByAgente2(String emailAgente) throws PersistenceException {
 		AgenteEmpresaDao empresaDao = DaoFactory.getAgenteEmpresaDao();
 		return empresaDao.findByAgente2(emailAgente);
 	}
 	
+	public List<Agente> findByEmpresa(String emailEmpresa) throws PersistenceException {
+		AgenteEmpresaDao empresaDao = DaoFactory.getAgenteEmpresaDao();
+		return empresaDao.findByEmpresa(emailEmpresa);
+	}
 }
 

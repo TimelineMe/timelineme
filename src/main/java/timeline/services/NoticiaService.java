@@ -20,6 +20,9 @@ public class NoticiaService {
 		NoticiaDao empresasDao = DaoFactory.getNoticiaDao();
 		return empresasDao.findbyEmpresa(emailEmpresa);
 	}
-	
+	public List<Noticia> findbyAutor(String emailAutor) throws PersistenceException {
+		NoticiaDao autorDao = DaoFactory.getNoticiaDao();
+		return autorDao.findbyAutor(emailAutor);
+	}
 }
 

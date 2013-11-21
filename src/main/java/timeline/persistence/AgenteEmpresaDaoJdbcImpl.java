@@ -29,13 +29,13 @@ public class AgenteEmpresaDaoJdbcImpl implements  AgenteEmpresaDao {
 		
 		try{
 			tx.begin();
-			String query = "insert into AgenteEmpresa (agente,empresa) values(?, ?)";
+			String query = "insert into AgenteEmpresa (sigue_Empresa, agente) values(?, ?)";
 			
 			PreparedStatement statement = TransactionJdbcImpl.getInstance().getConnection().prepareStatement(query);
 			
-			statement.setString(1, agenteEmpresa.getAgente());
+			statement.setString(1, agenteEmpresa.getSigue_Empresa());
 			
-			statement.setString(2, agenteEmpresa.getEmpresa());
+			statement.setString(2, agenteEmpresa.getAgente());
 			
 			statement.executeUpdate();
 			
@@ -60,10 +60,10 @@ public class AgenteEmpresaDaoJdbcImpl implements  AgenteEmpresaDao {
 		try{
 			tx.begin();
 			
-			String query = "delete from AgenteEmpresa where agente = ? AND empresa = ? ";
+			String query = "delete from AgenteEmpresa where sigue_Empresa = ? AND agente = ? ";
 			PreparedStatement statement = con.prepareStatement(query);
-			statement.setString(1, agenteEmpresa.getAgente());
-			statement.setString(2, agenteEmpresa.getEmpresa());
+			statement.setString(1, agenteEmpresa.getSigue_Empresa());
+			statement.setString(2, agenteEmpresa.getAgente());
 			statement.executeUpdate();
 			tx.commit();
 		}catch(SQLException sqlException){
@@ -78,48 +78,26 @@ public class AgenteEmpresaDaoJdbcImpl implements  AgenteEmpresaDao {
 		
 	}
 
-	@Override
-	public List<AgenteEmpresa> findByAgente(String emailAgente) throws PersistenceException {
-		List<AgenteEmpresa> lista = new LinkedList<AgenteEmpresa>();
-		try{
-			Connection c = ConnectionProvider.getInstance().getConnection();
-			String query = "select * from AgenteEmpresa where agente=?";
-			PreparedStatement statement = c.prepareStatement(query);
-			statement.setString(1, emailAgente);
-			ResultSet resultSet = statement.executeQuery();
-			while(resultSet.next()){
-				lista.add(convertOne(resultSet));
-			}
-		}catch(SQLException sqlException){
-			throw new PersistenceException(sqlException);
-		}
-		return lista;
-	}
-
+	
 
 	@Override
 	public List<Agente> findByEmpresa(String emailEmpresa) throws PersistenceException {
 		List<Agente> lista = new LinkedList<Agente>();
-		try{
+		try {
 			Connection c = ConnectionProvider.getInstance().getConnection();
-			String query = "select * from AgenteEmpresa where empresa = ?";
+			String query = "select * from AgenteEmpresa INNER JOIN Agente ON (Agente.email_Agente = AgenteEmpresa.agente) where AgenteEmpresa.sigue_Empresa = ?";
 			PreparedStatement statement = c.prepareStatement(query);
 			statement.setString(1, emailEmpresa);
 			ResultSet resultSet = statement.executeQuery();
-			while(resultSet.next()){
-				lista.add(ConvertOneAgente(resultSet));
+			while (resultSet.next()) {
+				lista.add(convertOneAgente(resultSet));
 			}
-		}catch(SQLException sqlException){
+		} catch (SQLException sqlException) {
 			throw new PersistenceException(sqlException);
 		}
 		return lista;
 	}
 
-
-	private Agente ConvertOneAgente(ResultSet resultSet)throws SQLException {
-		Agente retorno = new Agente(resultSet.getString("email_Agente"), resultSet.getString("nombre_Agente"), resultSet.getString("password"), resultSet.getString("cargo"),resultSet.getString("descripcion"), resultSet.getString("empresa"));
-		return retorno;
-	}
 	
 	@Override
 	public List<AgenteEmpresa> findAll() throws PersistenceException {
@@ -143,7 +121,7 @@ public class AgenteEmpresaDaoJdbcImpl implements  AgenteEmpresaDao {
 		List<Empresa> lista = new LinkedList<Empresa>();
 		try {
 			Connection c = ConnectionProvider.getInstance().getConnection();
-			String query = "select * from AgenteEmpresa INNER JOIN Empresa ON (Empresa.email = AgenteEmpresa.empresa) where AgenteEmpresa.agente=?";
+			String query = "select * from AgenteEmpresa INNER JOIN Empresa ON (Empresa.email = AgenteEmpresa.sigue_Empresa) where AgenteEmpresa.agente=?";
 			PreparedStatement statement = c.prepareStatement(query);
 			statement.setString(1, emailAgente);
 			ResultSet resultSet = statement.executeQuery();
@@ -156,11 +134,16 @@ public class AgenteEmpresaDaoJdbcImpl implements  AgenteEmpresaDao {
 		return lista;		
 	}
 	private AgenteEmpresa convertOne(ResultSet resultSet) throws SQLException {
-		AgenteEmpresa retorno = new AgenteEmpresa(resultSet.getString("empresa"),resultSet.getString("agente")); 
+		AgenteEmpresa retorno = new AgenteEmpresa(resultSet.getString("sigue_Empresa"),resultSet.getString("agente")); 
 		return retorno;
 	}
 	private Empresa convertOneEmpresa(ResultSet resultSet) throws SQLException {
 		Empresa retorno = new Empresa(resultSet.getString("email"),resultSet.getString("password"),resultSet.getString("razon_Social"),resultSet.getString("sitio_web"),resultSet.getString("direccion"),resultSet.getInt("telefono")); 
 		return retorno;
 	}
+	private Agente convertOneAgente(ResultSet resultSet) throws SQLException {
+		Agente retorno = new Agente(resultSet.getString("email_Agente"),resultSet.getString("nombre_Agente"),resultSet.getString("password"),resultSet.getString("cargo"),resultSet.getString("descripcion"),resultSet.getString("empresa"));
+		return retorno;	
+	}
+
 }

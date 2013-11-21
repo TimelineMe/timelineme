@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
@@ -58,6 +59,13 @@
 			<h2>Descripción</h2>
 			<p>${miAgente.descripcion}</p>
 		</div>
+		<c:forEach items="${misNoticias}" var="unaNoticia">
+		<div class="noticia">
+			<h2>${unaNoticia.titulo}</h2>
+			<p>${unaNoticia.contenido}</p>
+			<p class="noticiaPublicadaPor">Publicada por <a href="perfilautor.do?emailAgente=${unaNoticia.autor}">${unaNoticia.autor}</a> el ${unaNoticia.fecha}</p>
+		</div>
+		</c:forEach>
 	</div>
 	<div id="footer">
 		<p>Copyright (c) 2013 Timeline.me, taller Web (Andrés Malagreca, Alicia Rosenthal, Marcos Scalzotto).</p>
