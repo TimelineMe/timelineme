@@ -42,6 +42,10 @@ public class MenuController {
 	public ModelAndView CrearAgente() {
 		return new ModelAndView("crearnoticia");
 	}
+	@RequestMapping("/noticia")
+	public ModelAndView Noticia() {
+		return new ModelAndView("noticia");
+	}
 
 	@RequestMapping("/empresasquesigo")
 	
@@ -61,9 +65,7 @@ public class MenuController {
 		
 		String email = (String) session.getAttribute("agente");
 		List <Noticia> noticiasSeguidas = agenteEmpresaService.findNoticiasByAgente(email);
-		Integer novedades = noticiasSeguidas.size();
 		mavNotificaciones.addObject("noticiasSeguidas", noticiasSeguidas);
-		mavNotificaciones.addObject("novedades", novedades);
 		return mavNotificaciones;
 	}
 

@@ -1,18 +1,21 @@
 package timeline.controllers;
 
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import timeline.model.Noticia;
 import timeline.persistence.PersistenceException;
 import timeline.services.AgenteEmpresaService;
 import timeline.services.LoginService;
 @Controller
 @RequestMapping("/paginas")
-@SessionAttributes("agente")
+@SessionAttributes({"agente","novedades"})
 public class LoginController {
 
 	LoginService loginService = new LoginService();
@@ -27,7 +30,10 @@ public class LoginController {
 
 		if (loginService.validar(email, password)) {
 			ModelAndView modelAndView = new ModelAndView();
+			List <Noticia> noticiasSeguidas = agenteEmpresaService.findNoticiasByAgente(email);
+			Integer novedades = noticiasSeguidas.size();
 			modelAndView.addObject("agente", email);
+			modelAndView.addObject("novedades", novedades);
 			modelAndView.setViewName("bienvenidoagente");
 			return modelAndView;
 		} else {

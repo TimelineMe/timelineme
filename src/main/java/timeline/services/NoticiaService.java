@@ -24,5 +24,9 @@ public class NoticiaService {
 		NoticiaDao autorDao = DaoFactory.getNoticiaDao();
 		return autorDao.findbyAutor(emailAutor);
 	}
+	public Noticia findbyID(Integer id) throws PersistenceException {
+		NoticiaDao noticiaDao = DaoFactory.getNoticiaDao();
+		return noticiaDao.findByID(id);
+	}
 }
 

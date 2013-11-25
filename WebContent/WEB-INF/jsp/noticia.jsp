@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
-	<title>Bienvenido agente</title>
+	<title>Timeline Me</title>
 	<link rel="stylesheet" href="../css/estilos.css" />
 </head>
 <body>
@@ -17,10 +18,10 @@
 				<div class="notificacion"><p>${novedades}</p></div>
 				<ul>
 					<li class="mail">
-						<a href="notificaciones.do"></a>
+						<a href="notificaciones.do" class="icono-mail"></a>
 					</li>
 					<li class="configuracion">
-						<a href="#"></a>
+						<a href="#" class="icon-cogs"></a>
 						<ul>
 							<!--<li><a href="altaagente.do">Alta de Agentes</a></li>-->
 							<li><a href="perfilagente.do">Perfil</a></li>
@@ -30,7 +31,7 @@
 						</ul>
 					</li>
 					<li class="salir">
-						<a href="logout.do"></a>
+						<a href="logout.do" class="icon-twitter"></a>
 					</li>
 				</ul>
 			</div>
@@ -39,19 +40,15 @@
 				<p><button type="submit">Buscar</button></p>
 			</form>
 			<div id="usuario">
-				<img src="../img/perfil.png" alt="" /> <p>Hola ${agente}</p>
+				<img src="img/perfil.png" alt="" /> <p>Hola ${agente}</p>
 			</div>
 		</div>
 	</div>
 	<div id="contenedor">
-		<div id="contenido">
-			<h1>Bienvenido ${agente}</h1>
-			<ul id="botonesQueHacer">
-				<li id="botonesQueHacerBtnCrearNoticia"><a href="crearnoticia.do">Crear una noticia</a></li>
-				<li id="botonesQueHacerBtnVerPerfil"><a href="perfilagente.do">Ver mi perfil</a></li>
-				<li id="botonesQueHacerBtnEmpresasQueSigo"><a href="empresasquesigo.do">Ver empresas que sigo</a></li>
-				<li id="botonesQueHacerBtnBuscarEmpresas"><a href="resultadosbusqueda.do">Buscar empresas</a></li>
-			</ul>
+		<div class="noticia">
+			<h2>${unaNoticia.titulo}</h2>
+			<p>${unaNoticia.contenido}</p>
+			<p class="noticiaPublicadaPor">Publicada por <a href="perfilautor.do?emailAgente=${unaNoticia.autor}">${unaNoticia.autor}</a> el ${unaNoticia.fecha}</p>
 		</div>
 	</div>
 	<div id="footer">
