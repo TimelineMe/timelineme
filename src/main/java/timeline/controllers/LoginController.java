@@ -1,5 +1,6 @@
 package timeline.controllers;
 
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -7,6 +8,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import timeline.persistence.PersistenceException;
+import timeline.services.AgenteEmpresaService;
 import timeline.services.LoginService;
 @Controller
 @RequestMapping("/paginas")
@@ -14,6 +16,7 @@ import timeline.services.LoginService;
 public class LoginController {
 
 	LoginService loginService = new LoginService();
+	AgenteEmpresaService agenteEmpresaService = new AgenteEmpresaService();
 
 	@RequestMapping("/login")
 	public ModelAndView authenticate(
@@ -33,6 +36,10 @@ public class LoginController {
 
 		return reenvio;
 
+	}
+	@RequestMapping("/logout")
+	public ModelAndView Logout() {
+		return new ModelAndView("index2","mensaje","Estas deslogueado. Para volver a ingresar al sitio, tendras que loguearte de nuevo.");
 	}
 
 }

@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
@@ -12,13 +15,13 @@
 				<a href="bienvenidoagente.do"><img src="../img/timeline_me.png" alt="" /></a>
 			</div>
 			<div id="menu">
-				<div class="notificacion"><p>5</p></div>
+				<div class="notificacion"><p>${novedades}</p></div>
 				<ul>
 					<li class="mail">
-						<a href="notificaciones.do" class="icono-mail"></a>
+						<a href="notificaciones.do"></a>
 					</li>
 					<li class="configuracion">
-						<a href="#" class="icon-cogs"></a>
+						<a href="#"></a>
 						<ul>
 							<!--<li><a href="altaagente.do">Alta de Agentes</a></li>-->
 							<li><a href="perfilagente.do">Perfil</a></li>
@@ -28,7 +31,7 @@
 						</ul>
 					</li>
 					<li class="salir">
-						<a href="#" class="icon-twitter"></a>
+						<a href="logout.do"></a>
 					</li>
 				</ul>
 			</div>
@@ -45,14 +48,14 @@
 		<div id="contenido">
 		<h1>Notificaciones</h1>
 		<ul id="listaNotificaciones">
-			<li><a href="timeline.do">Timeline.me</a> publicó el 16/12/2013 a las 21:00 la siguiente noticia: <a href="timeline.do">Disculpas por promocionar al innombrable</a></li>
-			<li><a href="timeline.do">Timeline.me</a> publicó el 15/12/2013 a las 11:00 la siguiente noticia: <a href="timeline.do">Más sorteos de navidad</a></li>
-			<li><a href="timeline.do">Timeline.me</a> publicó el 12/12/2013 a las 11:00 la siguiente noticia: <a href="timeline.do">Más sorpresas para los usuarios</a></li>
+		<c:forEach items="${noticiasSeguidas}" var="unaNoticia">
+			<li><a href="perfilautor.do?emailAgente=${unaNoticia.autor}">${unaNoticia.autor}</a> publicÃ³ el ${unaNoticia.fecha} la siguiente noticia: <a href="noticia.do?id=${unaNoticia.id}">${unaNoticia.titulo}</a></li>
+		</c:forEach>
 		</ul>
 		</div>
 	</div>
 	<div id="footer">
-		<p>Copyright (c) 2013 Timeline.me, taller Web (Andrés Malagreca, Alicia Rosenthal, Marcos Scalzotto).</p>
+		<p>Copyright (c) 2013 Timeline.me, taller Web (AndrÃ©s Malagreca, Alicia Rosenthal, Marcos Scalzotto).</p>
 	</div>
 </body>
 </html>

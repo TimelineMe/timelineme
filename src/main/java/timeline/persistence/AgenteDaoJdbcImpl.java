@@ -9,6 +9,7 @@ import java.util.List;
 
 import timeline.model.Agente;
 
+
 public class AgenteDaoJdbcImpl implements AgenteDao { // este es el que implementa el persona dao y hace los insert, delete, y update respectivos
 
 	private static AgenteDao instance = new AgenteDaoJdbcImpl(); //patron singleton
@@ -100,7 +101,7 @@ public class AgenteDaoJdbcImpl implements AgenteDao { // este es el que implemen
 					.getConnection().prepareStatement(query);
 			ResultSet resultSet = statement.executeQuery();
 			while (resultSet.next()) {
-				lista.add(convertOne(resultSet)); //tiene que convertir cada tupla en una persona. convertone esta al final del archivo
+				lista.add(convertOneAgente(resultSet)); //tiene que convertir cada tupla en una persona. convertone esta al final del archivo
 			}
 		} catch (SQLException sqlException) {
 			throw new PersistenceException(sqlException);
@@ -122,15 +123,32 @@ public class AgenteDaoJdbcImpl implements AgenteDao { // este es el que implemen
 			statement.setString(1, email_Agente);
 			ResultSet resultSet = statement.executeQuery();
 			if (resultSet.next()) {
-				agente = convertOne(resultSet);
+				agente = convertOneAgente(resultSet);
 			}
 		} catch (SQLException sqlException) {
 			throw new PersistenceException(sqlException);
 		}
 		return agente;
 	}
+	@Override
+	public List<Agente> findByEmpresa(String email_Empresa) throws PersistenceException {
+		List<Agente> lista = new LinkedList<Agente>();
+		try {
+			Connection c = ConnectionProvider.getInstance().getConnection();
+			String query = "select * from Agente where empresa=?";
+			PreparedStatement statement = c.prepareStatement(query);
+			statement.setString(1, email_Empresa);
+			ResultSet resultSet = statement.executeQuery();
+			while (resultSet.next()) {
+				lista.add(convertOneAgente(resultSet));
+			}
+		} catch (SQLException sqlException) {
+			throw new PersistenceException(sqlException);
+		}
+		return lista;
+	}
 
-	private Agente convertOne(ResultSet resultSet) throws SQLException {
+	private Agente convertOneAgente(ResultSet resultSet) throws SQLException {
 		Agente retorno = new Agente(resultSet.getString("email_Agente"),resultSet.getString("nombre_Agente"),resultSet.getString("password"),resultSet.getString("cargo"),resultSet.getString("descripcion"),resultSet.getString("empresa")); //crea el agente, le asigna los valores y la devuelve
 		return retorno;
 	}

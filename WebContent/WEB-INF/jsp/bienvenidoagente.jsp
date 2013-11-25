@@ -17,10 +17,10 @@
 				<div class="notificacion"><p>5</p></div>
 				<ul>
 					<li class="mail">
-						<a href="notificaciones.html" class="icono-mail"></a>
+						<a href="notificaciones.do"></a>
 					</li>
 					<li class="configuracion">
-						<a href="#" class="icon-cogs"></a>
+						<a href="#"></a>
 						<ul>
 							<!--<li><a href="altaagente.do">Alta de Agentes</a></li>-->
 							<li><a href="perfilagente.do">Perfil</a></li>
@@ -30,7 +30,7 @@
 						</ul>
 					</li>
 					<li class="salir">
-						<a href="#" class="icon-twitter"></a>
+						<a href="logout.do"></a>
 					</li>
 				</ul>
 			</div>

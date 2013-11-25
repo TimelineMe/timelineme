@@ -116,7 +116,7 @@ public class AgenteEmpresaDaoJdbcImpl implements  AgenteEmpresaDao {
 	}
 
 	@Override
-	public List<Empresa> findByAgente2(String emailAgente)
+	public List<Empresa> findByAgente(String emailAgente)
 			throws PersistenceException {
 		List<Empresa> lista = new LinkedList<Empresa>();
 		try {
@@ -145,5 +145,9 @@ public class AgenteEmpresaDaoJdbcImpl implements  AgenteEmpresaDao {
 		Agente retorno = new Agente(resultSet.getString("email_Agente"),resultSet.getString("nombre_Agente"),resultSet.getString("password"),resultSet.getString("cargo"),resultSet.getString("descripcion"),resultSet.getString("empresa"));
 		return retorno;	
 	}
+	/*private Noticia convertOneNoticia(ResultSet resultSet) throws SQLException {
+		Noticia retorno = new Noticia(resultSet.getInt("id_Noticia"),resultSet.getString("titulo"),resultSet.getString("contenido"),resultSet.getString("fecha_hora"),resultSet.getString("autor"));
+		return retorno;
+	}*/
 
 }

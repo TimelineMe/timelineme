@@ -119,10 +119,6 @@ public class NoticiaDaoJdbcImpl implements NoticiaDao {
 		}
 		return lista;
 	}
-	private Noticia convertOne(ResultSet resultSet) throws SQLException {
-		Noticia retorno = new Noticia(resultSet.getInt("id_noticia"),resultSet.getString("titulo"),resultSet.getString("contenido"),resultSet.getString("fecha_hora"),resultSet.getString("autor")); //duda sobre esto
-		return retorno;
-	}
 	@Override
 	public List<Noticia> findbyEmpresa(String pemailEmpresa)
 			throws PersistenceException {
@@ -134,16 +130,12 @@ public class NoticiaDaoJdbcImpl implements NoticiaDao {
 				statement.setString(1, pemailEmpresa);
 				ResultSet resultSet = statement.executeQuery();
 				while(resultSet.next()){
-					lista.add(convertOne1(resultSet));
+					lista.add(convertOne(resultSet));
 				}
 			}catch(SQLException sqlException){
 				throw new PersistenceException(sqlException);
 			}
 			return lista;
-		}
-		private Noticia convertOne1(ResultSet resultSet) throws SQLException {
-			Noticia retorno = new Noticia(resultSet.getInt("id_Noticia"),resultSet.getString("titulo"),resultSet.getString("contenido"),resultSet.getString("fecha_hora"),resultSet.getString("autor")); //duda sobre esto
-			return retorno;
 	}
 	
 	@Override
@@ -157,15 +149,15 @@ public class NoticiaDaoJdbcImpl implements NoticiaDao {
 			statement.setString(1, emailAutor);
 			ResultSet resultSet = statement.executeQuery();
 			while(resultSet.next()){
-				lista.add(convertOne2(resultSet));
+				lista.add(convertOne(resultSet));
 			}
 		}catch(SQLException sqlException){
 			throw new PersistenceException(sqlException);
 		}
 		return lista;
 	}
-	private Noticia convertOne2(ResultSet resultSet) throws SQLException {
-		Noticia retorno = new Noticia(resultSet.getInt("id_Noticia"),resultSet.getString("titulo"),resultSet.getString("contenido"),resultSet.getString("fecha_hora"),resultSet.getString("autor")); //duda sobre esto
+	private Noticia convertOne(ResultSet resultSet) throws SQLException {
+		Noticia retorno = new Noticia(resultSet.getInt("id_Noticia"),resultSet.getString("titulo"),resultSet.getString("contenido"),resultSet.getString("fecha_hora"),resultSet.getString("autor"));
 		return retorno;
 	}
 }

@@ -17,5 +17,7 @@ public interface AgenteDao { //es una interface, que alguien tiene que implement
     public Agente findByEmail(String email_Agente) throws PersistenceException; //trae un objeto de tipo agente
     
     public List<Agente> findAll() throws PersistenceException;
+
+    public List<Agente> findByEmpresa(String emailEmpresa) throws PersistenceException;
     
 }

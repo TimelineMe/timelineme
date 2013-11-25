@@ -90,5 +90,12 @@ public class AgenteDaoTests {
 		assertEquals("se espera que haya dos agentes en la base", 2, todoslosAgentes.size());
 
 	}*/
+	@Test
+	public void testQueSePuedenBuscarTodosLosAgentesdeUnaEmpresa() throws PersistenceException {
+
+		List<Agente> todoslosAgentes = dao.findByEmpresa("info@timelineme.com.ar");
+		assertEquals("se espera que haya dos agentes en la base", 2, todoslosAgentes.size());
+
+	}
 
 }

@@ -50,14 +50,21 @@ public class MenuController {
 		ModelAndView mavPerfilAgente = new ModelAndView("empresasquesigo");
 			
 			String email = (String) session.getAttribute("agente");
-			List<Empresa> misEmpresasSeguidas = agenteEmpresaService.findByAgente2(email);
+			List<Empresa> misEmpresasSeguidas = agenteEmpresaService.findByAgente(email);
 			mavPerfilAgente.addObject("misEmpresasSeguidas", misEmpresasSeguidas);
 			return mavPerfilAgente;
 	}
 
 	@RequestMapping("/notificaciones")
-	public ModelAndView Notificaciones() {
-		return new ModelAndView("notificaciones");
+	public ModelAndView Notificaciones(HttpSession session) throws PersistenceException {
+		ModelAndView mavNotificaciones = new ModelAndView("notificaciones");
+		
+		String email = (String) session.getAttribute("agente");
+		List <Noticia> noticiasSeguidas = agenteEmpresaService.findNoticiasByAgente(email);
+		Integer novedades = noticiasSeguidas.size();
+		mavNotificaciones.addObject("noticiasSeguidas", noticiasSeguidas);
+		mavNotificaciones.addObject("novedades", novedades);
+		return mavNotificaciones;
 	}
 
 	@RequestMapping("/perfilagente")
@@ -99,7 +106,6 @@ public class MenuController {
 				"resultadosbusqueda");
 		
 		List<Empresa> misEmpresas = empresaService.findAllEmpresas();
-		//agrego objetos para enviar
 		mavResultadosEmpresas.addObject("misEmpresas", misEmpresas);
 		
 		return mavResultadosEmpresas;

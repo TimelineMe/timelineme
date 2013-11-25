@@ -40,7 +40,7 @@ public class AgenteSigueEmpresaTests {
 	}
 	@Test
 	public void Empresa() throws PersistenceException {
-		List<Empresa> empresa = dao.findByAgente2("aliciarosenthal@gmail.com");
+		List<Empresa> empresa = dao.findByAgente("aliciarosenthal@gmail.com");
 		assertEquals("tiene que haber 2 empresas",2,empresa.size());
 	}
 	@Test

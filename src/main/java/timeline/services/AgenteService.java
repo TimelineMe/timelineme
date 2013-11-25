@@ -1,5 +1,7 @@
 package timeline.services;
 
+import java.util.List;
+
 import timeline.model.Agente;
 import timeline.persistence.AgenteDao;
 import timeline.persistence.DaoFactory;
@@ -19,6 +21,11 @@ public class AgenteService {
 	public Agente findByEmail(String email) throws PersistenceException {
 		AgenteDao miAgenteDao = DaoFactory.getAgenteDao();
 		return miAgenteDao.findByEmail(email);
+	}
+	
+	public List<Agente> findByEmpresa(String email) throws PersistenceException {
+		AgenteDao miAgenteDao = DaoFactory.getAgenteDao();
+		return miAgenteDao.findByEmpresa(email);
 	}
 }
 

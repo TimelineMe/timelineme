@@ -52,13 +52,7 @@
 			<h1>Bienvenido a timeline.me</h1>
 			<p class="error">${mensaje}</p>
 			<p>Bienvenido a timeline.me, un sitio donde podés publicar las novedades de tu empresa, y enterarte de las novedades de las demás.</p>
-			<p><a href="altaagente.do">Alta Agente</a></p>
-			<p><a href="bienvenidoagente.do">Bienvenido agente</a></p>
-			<p><a href="crearnoticia.do">Crear Noticia</a></p>
-			<p><a href="empresasquesigo.do">Empresas que sigo</a></p>
-			<p><a href="notificaciones.do">Notificaciones</a></p>
-			<p><a href="perfilagente.do">Perfil Agente</a></p>
-			<p><a href="timeline.do">Timeline</a></p>
+			
 		</div>
 		<form action="registro.do" method="post" id="formRegistro" enctype="multipart/form-data">
 			<fieldset>

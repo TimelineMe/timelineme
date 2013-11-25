@@ -31,7 +31,7 @@
 						</ul>
 					</li>
 					<li class="salir">
-						<a href="#" class="icon-twitter"></a>
+						<a href="logout.do" class="icon-twitter"></a>
 					</li>
 				</ul>
 			</div>
