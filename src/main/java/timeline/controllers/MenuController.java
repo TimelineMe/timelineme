@@ -43,8 +43,11 @@ public class MenuController {
 		return new ModelAndView("crearnoticia");
 	}
 	@RequestMapping("/noticia")
-	public ModelAndView Noticia() {
-		return new ModelAndView("noticia");
+	public ModelAndView Noticia (@RequestParam("id") Integer id) throws PersistenceException {
+		ModelAndView mavNoticia = new ModelAndView("noticia");
+		Noticia noticia = noticiaService.findbyID(id);
+		mavNoticia.addObject("noticia",noticia);
+		return mavNoticia;
 	}
 
 	@RequestMapping("/empresasquesigo")

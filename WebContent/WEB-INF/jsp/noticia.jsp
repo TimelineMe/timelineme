@@ -46,9 +46,9 @@
 	</div>
 	<div id="contenedor">
 		<div class="noticia">
-			<h2>${unaNoticia.titulo}</h2>
-			<p>${unaNoticia.contenido}</p>
-			<p class="noticiaPublicadaPor">Publicada por <a href="perfilautor.do?emailAgente=${unaNoticia.autor}">${unaNoticia.autor}</a> el ${unaNoticia.fecha}</p>
+			<h2>${noticia.titulo}</h2>
+			<p>${noticia.contenido}</p>
+			<p class="noticiaPublicadaPor">Publicada por <a href="perfilautor.do?emailAgente=${noticia.autor}">${noticia.autor}</a> el ${noticia.fecha}</p>
 		</div>
 	</div>
 	<div id="footer">
