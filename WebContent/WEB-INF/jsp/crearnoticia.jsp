@@ -44,9 +44,10 @@
 		</div>
 	</div>
 	<div id="contenedor">
-		<form action="" method="post" id="formNoticia" enctype="multipart/form-data">
+		<p class="error">${mensaje}</p>
+		<form action="insertarnoticia.do" method="post" id="formNoticia">
 			<fieldset>
-			<legend>Crear una nueva noticia</legend>
+				<legend>Crear una nueva noticia</legend>
 				<p><label for="titulo">Titulo</label><input type="text" name="titulo" id="titulo" /></p>
 				<p><label for="contenido">Contenido</label><textarea name="contenido" id="contenido" cols="20" rows="17"></textarea></p>
 			</fieldset>

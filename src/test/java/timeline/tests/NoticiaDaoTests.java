@@ -2,6 +2,7 @@ package timeline.tests;
 
 import static org.junit.Assert.*;
 
+import java.util.Date;
 import java.util.List;
 
 import org.junit.After;
@@ -19,7 +20,7 @@ public class NoticiaDaoTests {
 	
 	Noticia PerroMuerto = new Noticia(1,"Perro muere atropellado", null, null, null);
 	Noticia LadronCapturado = new Noticia(2,"Ladron profugo recapturado", null, null, null);
-	
+	Noticia ParaJuanJose = new Noticia(6,"Lo ultimo de juanjo","juanjo con chupines","2013-12-01 00:00:00","juanjoc@nuevaesponja.com.ar");
 	/*@Before
 	public void setUp() throws PersistenceException {
 		//borramos todas las noticias para iniciar con la BDD vacia
@@ -55,7 +56,6 @@ public class NoticiaDaoTests {
 		assertEquals("ahora deberia haber 3 noticias",3,dao.findAll().size());
 		assertNotNull("chequeamos que exista la noticia",dao.findByID(Obni.getId()));
 	}
-	
 	@Test
 	public void BorrarUnaNoticia() throws PersistenceException{
 		Noticia NotiAborrar = dao.findByID(PerroMuerto.getId());
@@ -80,7 +80,13 @@ public class NoticiaDaoTests {
 		List <Noticia> TodasLasNoticias = dao.findAll();
 		assertEquals("tiene que haber 2 noticias en la BDD",2,TodasLasNoticias.size());
 	}*/
-	
+	@Test
+	public void Insertar() throws PersistenceException{
+		dao.insert(ParaJuanJose);
+		List <Noticia> TodasLasNoticias = dao.findbyAutor("juanjoc@nuevaesponja.com.ar");
+		assertEquals("tiene que haber 1 noticia en la BDD",1,TodasLasNoticias.size());
+		
+	}
 	@Test
 	public void BuscarLasNoticasdeUnAutor() throws PersistenceException{
 		List <Noticia> TodasLasNoticias = dao.findbyAutor("leandroandres1@gmail.com");

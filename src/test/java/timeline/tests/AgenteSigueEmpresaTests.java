@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import java.util.List;
 
-import org.junit.Before;
+//import org.junit.Before;
 import org.junit.Test;
 
 import timeline.model.Agente;
@@ -18,8 +18,8 @@ public class AgenteSigueEmpresaTests {
 
 	AgenteEmpresaDao dao = DaoFactory.getAgenteEmpresaDao();
 	
-	/*AgenteEmpresa AE1 = new AgenteEmpresa("andres@gmail.com","Aerolinea xxx");
-	AgenteEmpresa AE2 = new AgenteEmpresa("andres@gmail.com","Super Pirulo");
+	AgenteEmpresa AE1 = new AgenteEmpresa("java@java.com.ar","marcos.scalzotto@hotmail.com");
+	/*AgenteEmpresa AE2 = new AgenteEmpresa("andres@gmail.com","Super Pirulo");
 	AgenteEmpresa AE3 = new AgenteEmpresa("marcos@gmail.com","Super Pirulo");
 	AgenteEmpresa AE4 = new AgenteEmpresa("marcos@gmail.com","Aerolinea xxx");*/
 	
@@ -32,11 +32,22 @@ public class AgenteSigueEmpresaTests {
 		assertEquals("a ver si se inserto la primer empresa","andres@gmail",AE1.getDirAgente());
 		
 	}*/
-	
+	/*@Test
+	public void ProbandoSiInserta() throws PersistenceException {
+		dao.insert(AE1);
+		List<Agente> Agentes = dao.findByEmpresa("java@java.com.ar");
+		assertEquals("tiene que haber 3 agentes",3,Agentes.size());
+	}*/
+	@Test
+	public void ProbandoSiBorra() throws PersistenceException {
+		dao.delete(AE1);
+		List<Agente> Agentes = dao.findByEmpresa("java@java.com.ar");
+		assertEquals("tiene que haber 2 agentes",2,Agentes.size());
+	}
 	@Test
 	public void AgenteSigueEmpresa() throws PersistenceException {
 		List<Agente> Agentes = dao.findByEmpresa("info@timelineme.com.ar");
-		assertEquals("tiene que haber 3 empresas",3,Agentes.size());
+		assertEquals("tiene que haber 3 agentes",3,Agentes.size());
 	}
 	@Test
 	public void Empresa() throws PersistenceException {

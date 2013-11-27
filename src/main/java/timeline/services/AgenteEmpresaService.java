@@ -4,6 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import timeline.model.Agente;
+import timeline.model.AgenteEmpresa;
 import timeline.model.Empresa;
 import timeline.model.Noticia;
 import timeline.persistence.AgenteEmpresaDao;
@@ -55,6 +56,17 @@ public class AgenteEmpresaService {
 			}
 		}
 		return noticias;
+	}
+	public void seguirEmpresa(String emailEmpresa, String emailAgente) throws PersistenceException {
+		AgenteEmpresa seguirEmpresa = new AgenteEmpresa(emailEmpresa, emailAgente);
+		AgenteEmpresaDao agenteEmpresaDao = DaoFactory.getAgenteEmpresaDao();
+		agenteEmpresaDao.insert(seguirEmpresa);
+	}
+	
+	public void dejarSeguirEmpresa(String emailEmpresa, String emailAgente) throws PersistenceException {
+		AgenteEmpresa dejarEmpresa = new AgenteEmpresa(emailEmpresa, emailAgente);
+		AgenteEmpresaDao agenteEmpresaDao = DaoFactory.getAgenteEmpresaDao();
+		agenteEmpresaDao.delete(dejarEmpresa);
 	}
 }
 

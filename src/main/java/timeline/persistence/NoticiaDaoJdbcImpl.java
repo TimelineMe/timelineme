@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.springframework.web.bind.annotation.RequestParam;
+
 import timeline.model.Noticia;
 
 public class NoticiaDaoJdbcImpl implements NoticiaDao {
@@ -25,10 +27,13 @@ public class NoticiaDaoJdbcImpl implements NoticiaDao {
 		try{
 			tx.begin();
 			
-			String query = "insert into Noticia(id_noticia, titulo) values(?, ?)";
+			String query = "insert into Noticia(id_noticia, titulo, contenido, fecha_Hora, autor) values(?, ?, ?, ?, ?)";
 			PreparedStatement statement = TransactionJdbcImpl.getInstance().getConnection().prepareStatement(query);
 			statement.setInt(1, noticia.getId());
 			statement.setString(2, noticia.getTitulo());
+			statement.setString(3, noticia.getContenido());
+			statement.setString(4, noticia.getFecha());
+			statement.setString(5, noticia.getAutor());
 			
 			statement.executeUpdate();
 			

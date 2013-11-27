@@ -10,7 +10,7 @@ public class Noticia {
 
 	
 
-	public Noticia(Integer id_Noticia,String titulo,String contenido,String fecha_Hora, String autor) {
+	public Noticia(Integer id_Noticia,String titulo,String contenido,String fecha_Hora,String autor) {
 	 this.setId(id_Noticia); 
 	 this.setTitulo(titulo);
 	 this.setContenido(contenido);

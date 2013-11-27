@@ -49,7 +49,7 @@
 			<h1>Resultados de búsqueda</h1>
 			<ul id="resultadosBusqueda">
 				<c:forEach items="${misEmpresas}" var="unaEmpresa">
-					<li><a href="timeline.do?empresa=${unaEmpresa.email}">${unaEmpresa.razon_Social}</a> <a href="empresasquesigo.do" class="btnSeguir">Seguir</a></li>
+					<li><a href="timeline.do?empresa=${unaEmpresa.email}">${unaEmpresa.razon_Social}</a> <a href="seguir.do?empresa=${unaEmpresa.email}" class="btnSeguir">Seguir</a></li>
 				</c:forEach>
 			</ul>
 		</div>

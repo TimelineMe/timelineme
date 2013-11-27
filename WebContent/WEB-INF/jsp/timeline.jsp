@@ -47,14 +47,14 @@
 	<div id="contenedor">
 		<div id="headerEmpresa">
 			<h1>${miEmpresa.razon_Social}</h1>
-			<p id="fotoEmpresa"><img src="../img/timelineme.jpg" width="200" height="200" /></p>
+			<p id="fotoEmpresa"><img src="../img/empresas/${miEmpresa.razon_Social}.jpg" width="200" height="200" /></p>
 			<ul>
 				<li>Dirección: ${miEmpresa.direccion}</li>
 				<li>Teléfono: ${miEmpresa.telefono}</li>
 				<li>Sitio Web: <a href="http://${miEmpresa.sitio_Web}">${miEmpresa.sitio_Web}</a></li>
 				<li>E-mail: <a href="mailto:${miEmpresa.email}">${miEmpresa.email}</a></li>
 			</ul>
-			<p id="headerEmpresaBtnSeguir"><a href="timeline.html">Seguir</a></p>
+			<p id="headerEmpresaBtnSeguir"><a href="seguir.do?empresa=${miEmpresa.email}">Seguir</a></p>
 		</div>
 		${pemailEmpresa}
 		<c:forEach items="${misNoticias}" var="unaNoticia">

@@ -16,4 +16,5 @@ public interface AgenteEmpresaDao {
 	public List<AgenteEmpresa> findAll() throws PersistenceException;
 	
 	public List<Empresa> findByAgente(String emailAgente) throws PersistenceException;
+
 }

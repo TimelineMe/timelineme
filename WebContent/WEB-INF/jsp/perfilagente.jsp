@@ -47,7 +47,7 @@
 	<div id="contenedor">
 		<div id="headerEmpresa">
 			<h2>${miAgente.nombre}</h2>
-			<p id="fotoEmpresa"><img src="../img/perfil.jpg" width="200" height="200" /></p>
+			<p id="fotoEmpresa"><img src="../img/usuarios/${miAgente.nombre}.jpg" width="200" height="200" /></p>
 			<ul>
 				<li>Cargo: ${miAgente.cargo}</li>
 				<li>Empresa: <a href="timeline.do?empresa=${miEmpresa.email}">${miEmpresa.razon_Social}</a></li>

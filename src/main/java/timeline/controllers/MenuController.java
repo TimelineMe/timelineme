@@ -39,9 +39,22 @@ public class MenuController {
 	}
 
 	@RequestMapping("/crearnoticia")
-	public ModelAndView CrearAgente() {
+	public ModelAndView CrearNoticia() {
 		return new ModelAndView("crearnoticia");
 	}
+	
+	@RequestMapping("/insertarnoticia")
+	public ModelAndView InsertarNoticia(HttpSession session, @RequestParam("titulo") String titulo, @RequestParam("contenido") String contenido)
+			throws PersistenceException {
+			ModelAndView mavCrearNoticia = new ModelAndView("crearnoticia");
+			
+			String email = (String) session.getAttribute("agente");
+			noticiaService.insertarNoticia(titulo, contenido, email);
+			String mensaje = "La noticia se envió correctamente.";
+			mavCrearNoticia.addObject("mensaje", mensaje);
+			return mavCrearNoticia;
+	}
+	
 	@RequestMapping("/noticia")
 	public ModelAndView Noticia (@RequestParam("id") Integer id) throws PersistenceException {
 		ModelAndView mavNoticia = new ModelAndView("noticia");
@@ -131,4 +144,31 @@ public class MenuController {
 		mavTimelineEmpresa.addObject("misSeguidores", misSeguidores);
 		return mavTimelineEmpresa;
 	}
+	
+	@RequestMapping("/seguir")
+	public ModelAndView seguirEmpresa(HttpSession session,@RequestParam("empresa") String emailEmpresa)
+			throws PersistenceException {
+		ModelAndView mavSeguirEmpresa = new ModelAndView("empresasquesigo");
+		String email = (String) session.getAttribute("agente");
+		//llama al servicio para agregar la empresa a las que sigo
+		agenteEmpresaService.seguirEmpresa(emailEmpresa, email);
+		//busca en la base las empresas que sigo y las muestra
+		List<Empresa> misEmpresasSeguidas = agenteEmpresaService.findByAgente(email);
+		mavSeguirEmpresa.addObject("misEmpresasSeguidas", misEmpresasSeguidas);
+		return mavSeguirEmpresa;
+	}
+	
+	@RequestMapping("/dejardeseguir")
+	public ModelAndView dejarSeguirEmpresa(HttpSession session,@RequestParam("empresa") String emailEmpresa)
+			throws PersistenceException {
+		ModelAndView mavSeguirEmpresa = new ModelAndView("empresasquesigo");
+		
+		String email = (String) session.getAttribute("agente");
+		agenteEmpresaService.dejarSeguirEmpresa(emailEmpresa, email);
+		
+		List<Empresa> misEmpresasSeguidas = agenteEmpresaService.findByAgente(email);
+		mavSeguirEmpresa.addObject("misEmpresasSeguidas", misEmpresasSeguidas);
+		return mavSeguirEmpresa;
+	}
+	
 }
