@@ -155,6 +155,9 @@ public class MenuController {
 		//busca en la base las empresas que sigo y las muestra
 		List<Empresa> misEmpresasSeguidas = agenteEmpresaService.findByAgente(email);
 		mavSeguirEmpresa.addObject("misEmpresasSeguidas", misEmpresasSeguidas);
+		//vuelvo a cargar las noticias a la sesion
+		List <Noticia> noticiasSeguidas = agenteEmpresaService.findNoticiasByAgente(email);
+		session.setAttribute("novedades", noticiasSeguidas.size());
 		return mavSeguirEmpresa;
 	}
 	
@@ -168,6 +171,8 @@ public class MenuController {
 		
 		List<Empresa> misEmpresasSeguidas = agenteEmpresaService.findByAgente(email);
 		mavSeguirEmpresa.addObject("misEmpresasSeguidas", misEmpresasSeguidas);
+		List <Noticia> noticiasSeguidas = agenteEmpresaService.findNoticiasByAgente(email);
+		session.setAttribute("novedades", noticiasSeguidas.size());
 		return mavSeguirEmpresa;
 	}
 	
