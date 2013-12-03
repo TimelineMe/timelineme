@@ -39,13 +39,13 @@
 				<p><button type="submit">Buscar</button></p>
 			</form>
 			<div id="usuario">
-				<img src="../img/perfil.png" alt="" /> <p>Hola ${agente}</p>
+				<img src="../img/perfil.png" alt="" /> <p>Hola ${agente.nombre}</p>
 			</div>
 		</div>
 	</div>
 	<div id="contenedor">
 		<div id="contenido">
-			<h1>Bienvenido ${agente}</h1>
+			<h1>Bienvenido ${agente.nombre}</h1>
 			<ul id="botonesQueHacer">
 				<li id="botonesQueHacerBtnCrearNoticia"><a href="crearnoticia.do">Crear una noticia</a></li>
 				<li id="botonesQueHacerBtnVerPerfil"><a href="perfilagente.do">Ver mi perfil</a></li>

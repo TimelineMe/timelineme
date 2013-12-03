@@ -48,8 +48,8 @@ public class MenuController {
 			throws PersistenceException {
 			ModelAndView mavCrearNoticia = new ModelAndView("crearnoticia");
 			
-			String email = (String) session.getAttribute("agente");
-			noticiaService.insertarNoticia(titulo, contenido, email);
+			Agente email = (Agente) session.getAttribute("agente");
+			noticiaService.insertarNoticia(titulo, contenido, email.getEmail_Agente());
 			String mensaje = "La noticia se envió correctamente.";
 			mavCrearNoticia.addObject("mensaje", mensaje);
 			return mavCrearNoticia;
@@ -69,8 +69,8 @@ public class MenuController {
 			throws PersistenceException {
 		ModelAndView mavPerfilAgente = new ModelAndView("empresasquesigo");
 			
-			String email = (String) session.getAttribute("agente");
-			List<Empresa> misEmpresasSeguidas = agenteEmpresaService.findByAgente(email);
+			Agente email = (Agente) session.getAttribute("agente");
+			List<Empresa> misEmpresasSeguidas = agenteEmpresaService.findByAgente(email.getEmail_Agente());
 			mavPerfilAgente.addObject("misEmpresasSeguidas", misEmpresasSeguidas);
 			return mavPerfilAgente;
 	}
@@ -79,8 +79,8 @@ public class MenuController {
 	public ModelAndView Notificaciones(HttpSession session) throws PersistenceException {
 		ModelAndView mavNotificaciones = new ModelAndView("notificaciones");
 		
-		String email = (String) session.getAttribute("agente");
-		List <Noticia> noticiasSeguidas = agenteEmpresaService.findNoticiasByAgente(email);
+		Agente email = (Agente) session.getAttribute("agente");
+		List <Noticia> noticiasSeguidas = agenteEmpresaService.findNoticiasByAgente(email.getEmail_Agente());
 		mavNotificaciones.addObject("noticiasSeguidas", noticiasSeguidas);
 		return mavNotificaciones;
 	}
@@ -90,9 +90,9 @@ public class MenuController {
 			throws PersistenceException {
 		ModelAndView mavPerfilAgente = new ModelAndView("perfilagente");
 		
-		String email = (String) session.getAttribute("agente");
-		List<Noticia> misNoticias = noticiaService.findbyAutor(email);
-		Agente miAgente = agenteService.findByEmail(email);
+		Agente email = (Agente) session.getAttribute("agente");
+		List<Noticia> misNoticias = noticiaService.findbyAutor(email.getEmail_Agente());
+		Agente miAgente = agenteService.findByEmail(email.getEmail_Agente());
 				
 		String emailEmpresa = miAgente.getEmpresa();
 		Empresa miEmpresa = empresaService.findByEmail(emailEmpresa);
@@ -149,14 +149,14 @@ public class MenuController {
 	public ModelAndView seguirEmpresa(HttpSession session,@RequestParam("empresa") String emailEmpresa)
 			throws PersistenceException {
 		ModelAndView mavSeguirEmpresa = new ModelAndView("empresasquesigo");
-		String email = (String) session.getAttribute("agente");
+		Agente email = (Agente) session.getAttribute("agente");
 		//llama al servicio para agregar la empresa a las que sigo
-		agenteEmpresaService.seguirEmpresa(emailEmpresa, email);
+		agenteEmpresaService.seguirEmpresa(emailEmpresa, email.getEmail_Agente());
 		//busca en la base las empresas que sigo y las muestra
-		List<Empresa> misEmpresasSeguidas = agenteEmpresaService.findByAgente(email);
+		List<Empresa> misEmpresasSeguidas = agenteEmpresaService.findByAgente(email.getEmail_Agente());
 		mavSeguirEmpresa.addObject("misEmpresasSeguidas", misEmpresasSeguidas);
 		//vuelvo a cargar las noticias a la sesion
-		List <Noticia> noticiasSeguidas = agenteEmpresaService.findNoticiasByAgente(email);
+		List <Noticia> noticiasSeguidas = agenteEmpresaService.findNoticiasByAgente(email.getEmail_Agente());
 		session.setAttribute("novedades", noticiasSeguidas.size());
 		return mavSeguirEmpresa;
 	}
@@ -166,12 +166,12 @@ public class MenuController {
 			throws PersistenceException {
 		ModelAndView mavSeguirEmpresa = new ModelAndView("empresasquesigo");
 		
-		String email = (String) session.getAttribute("agente");
-		agenteEmpresaService.dejarSeguirEmpresa(emailEmpresa, email);
+		Agente email = (Agente) session.getAttribute("agente");
+		agenteEmpresaService.dejarSeguirEmpresa(emailEmpresa, email.getEmail_Agente());
 		
-		List<Empresa> misEmpresasSeguidas = agenteEmpresaService.findByAgente(email);
+		List<Empresa> misEmpresasSeguidas = agenteEmpresaService.findByAgente(email.getEmail_Agente());
 		mavSeguirEmpresa.addObject("misEmpresasSeguidas", misEmpresasSeguidas);
-		List <Noticia> noticiasSeguidas = agenteEmpresaService.findNoticiasByAgente(email);
+		List <Noticia> noticiasSeguidas = agenteEmpresaService.findNoticiasByAgente(email.getEmail_Agente());
 		session.setAttribute("novedades", noticiasSeguidas.size());
 		return mavSeguirEmpresa;
 	}

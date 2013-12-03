@@ -40,7 +40,7 @@
 				<p><button type="submit">Buscar</button></p>
 			</form>
 			<div id="usuario">
-				<img src="img/perfil.png" alt="" /> <p>Hola ${agente}</p>
+				<img src="img/perfil.png" alt="" /> <p>Hola ${agente.nombre}</p>
 			</div>
 		</div>
 	</div>

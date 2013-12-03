@@ -141,13 +141,9 @@ public class AgenteEmpresaDaoJdbcImpl implements  AgenteEmpresaDao {
 		Empresa retorno = new Empresa(resultSet.getString("email"),resultSet.getString("password"),resultSet.getString("razon_Social"),resultSet.getString("sitio_web"),resultSet.getString("direccion"),resultSet.getInt("telefono")); 
 		return retorno;
 	}
-	private Agente convertOneAgente(ResultSet resultSet) throws SQLException {
-		Agente retorno = new Agente(resultSet.getString("email_Agente"),resultSet.getString("nombre_Agente"),resultSet.getString("password"),resultSet.getString("cargo"),resultSet.getString("descripcion"),resultSet.getString("empresa"));
-		return retorno;	
-	}
-	/*private Noticia convertOneNoticia(ResultSet resultSet) throws SQLException {
-		Noticia retorno = new Noticia(resultSet.getInt("id_Noticia"),resultSet.getString("titulo"),resultSet.getString("contenido"),resultSet.getString("fecha_hora"),resultSet.getString("autor"));
+	private Agente convertOneAgente(ResultSet resultSet) throws SQLException, PersistenceException {
+		Agente retorno = new Agente(resultSet.getString("email_Agente"),resultSet.getString("nombre_Agente"),resultSet.getString("password"),resultSet.getString("cargo"),resultSet.getString("descripcion"),resultSet.getString("empresa")); 
 		return retorno;
-	}*/
+	}
 
 }

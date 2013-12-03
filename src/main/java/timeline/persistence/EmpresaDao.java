@@ -17,4 +17,6 @@ public interface EmpresaDao { //es una interface, que alguien tiene que implemen
     
     public List<Empresa> findAll() throws PersistenceException;
     
+    public List<Empresa> findEmpresaByPalabra(String razon_Social ) throws PersistenceException;
+    
 }

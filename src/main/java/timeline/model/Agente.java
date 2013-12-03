@@ -12,6 +12,7 @@ public class Agente {
 	private String empresa;
 	
 	
+	
 	public Agente(String email_Agente, String nombre_Agente, String password,String cargo,String descripcion, String empresa) {
 		this.email_Agente = email_Agente;
 		this.nombre_Agente = nombre_Agente;

@@ -149,7 +149,7 @@ public class AgenteDaoJdbcImpl implements AgenteDao { // este es el que implemen
 	}
 
 	private Agente convertOneAgente(ResultSet resultSet) throws SQLException {
-		Agente retorno = new Agente(resultSet.getString("email_Agente"),resultSet.getString("nombre_Agente"),resultSet.getString("password"),resultSet.getString("cargo"),resultSet.getString("descripcion"),resultSet.getString("empresa")); //crea el agente, le asigna los valores y la devuelve
+		Agente retorno = new Agente(resultSet.getString("email_Agente"),resultSet.getString("nombre_Agente"),resultSet.getString("password"),resultSet.getString("cargo"),resultSet.getString("descripcion"),resultSet.getString("empresa")); 
 		return retorno;
 	}
 

@@ -20,7 +20,7 @@ public class EmpresaDaoTests {
 	Empresa aerolinea = new Empresa("facebook@aerolineaxxx.test",null,"Aerolinea xxx",  null, null, 123);
 	Empresa supermercado = new Empresa("facebook@superpirulo.test", null,"Super Pirulo", null, null, 123);
 
-	@Before
+	/*@Before
 	public void setUp() throws PersistenceException {
 		// se borran todos los empresas para iniciar con la base vacia
 		for (Empresa cadaEmpresa : dao.findAll()) { //aca trae la lista completa 
@@ -81,14 +81,21 @@ public class EmpresaDaoTests {
 		dao.update(empresaEncontrado);
 		assertEquals("el empresa ahora es Aerolinea Lan", "Aerolinea Lan", empresaEncontrado.getRazon_Social());
 
-	}
+	}*/
 
 	@Test
 	public void testQueSePuedenBuscarTodosLosEmpresas() throws PersistenceException {
 
 		List<Empresa> todoslosEmpresas = dao.findAll();
-		assertEquals("se espera que haya dos empresas en la base", 2, todoslosEmpresas.size());
+		assertEquals("se espera que haya dos empresas en la base", 4, todoslosEmpresas.size());
 
 	}
+	
+	@Test
+	public void buscarEmpresaPorPalabra() throws PersistenceException {
+		List<Empresa> lista = dao.findEmpresaByPalabra("Java");
+		assertEquals("buscar empresa por palabra",1,lista.size());
+	}
+	
 
 }

@@ -9,16 +9,20 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import timeline.model.Agente;
 import timeline.model.Noticia;
 import timeline.persistence.PersistenceException;
 import timeline.services.AgenteEmpresaService;
 import timeline.services.LoginService;
+import timeline.services.AgenteService;
+
 @Controller
 @RequestMapping("/paginas")
 @SessionAttributes({"agente","novedades"})
 public class LoginController {
 
 	LoginService loginService = new LoginService();
+	AgenteService agenteService = new AgenteService();
 	AgenteEmpresaService agenteEmpresaService = new AgenteEmpresaService();
 
 	@RequestMapping("/login")
@@ -32,7 +36,8 @@ public class LoginController {
 			ModelAndView modelAndView = new ModelAndView();
 			List <Noticia> noticiasSeguidas = agenteEmpresaService.findNoticiasByAgente(email);
 			Integer novedades = noticiasSeguidas.size();
-			modelAndView.addObject("agente", email);
+			Agente agente = agenteService.findByEmail(email);
+			modelAndView.addObject("agente", agente);
 			modelAndView.addObject("novedades", novedades);
 			modelAndView.setViewName("bienvenidoagente");
 			return modelAndView;
