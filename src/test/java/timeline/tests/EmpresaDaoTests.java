@@ -93,8 +93,8 @@ public class EmpresaDaoTests {
 	
 	@Test
 	public void buscarEmpresaPorPalabra() throws PersistenceException {
-		List<Empresa> lista = dao.findEmpresaByPalabra("Java");
-		assertEquals("buscar empresa por palabra",1,lista.size());
+		List<Empresa> lista = dao.findEmpresaByPalabra("Ja");
+		assertEquals("buscar empresa por palabra",2,lista.size());
 	}
 	
 

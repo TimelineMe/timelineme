@@ -140,7 +140,7 @@ public class EmpresaDaoJdbcImpl implements EmpresaDao { // este es el que implem
 			Connection c = ConnectionProvider.getInstance().getConnection();
 			String query = "select * from Empresa WHERE razon_Social LIKE ?";
 			PreparedStatement statement = c.prepareStatement(query);
-			statement.setString(1, razon_Social);
+			statement.setString(1, "%"+razon_Social+"%");
 			ResultSet resultSet = statement.executeQuery();
 			while (resultSet.next()) {
 				lista.add(convertOne(resultSet));

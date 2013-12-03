@@ -34,8 +34,19 @@ public class MenuController {
 	}
 
 	@RequestMapping("/bienvenidoagente")
-	public ModelAndView BienvenidoAgente() {
+	public ModelAndView BienvenidoAgente(){
 		return new ModelAndView("bienvenidoagente");
+	}
+	@RequestMapping("/buscador")
+	public ModelAndView Buscador(@RequestParam("palabra") String palabra) throws PersistenceException {
+		
+		ModelAndView mavResultadosEmpresas = new ModelAndView(
+				"resultadosbusqueda");
+		
+		List<Empresa> misEmpresas = empresaService.findEmpresasByPalabra(palabra);
+		mavResultadosEmpresas.addObject("misEmpresas", misEmpresas);
+		
+		return mavResultadosEmpresas;
 	}
 
 	@RequestMapping("/crearnoticia")

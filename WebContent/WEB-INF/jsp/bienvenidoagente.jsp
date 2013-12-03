@@ -34,8 +34,8 @@
 					</li>
 				</ul>
 			</div>
-			<form action="resultadosbusqueda.do" id="headerFormBuscar">
-				<p><label for="textoBuscarHeader">Buscar</label><input type="text" name="q" id="textoBuscarHeader" /></p>
+			<form action="buscador.do" id="headerFormBuscar">
+				<p><label for="textoBuscarHeader">Buscar</label><input type="text" name="palabra" id="textoBuscarHeader" /></p>
 				<p><button type="submit">Buscar</button></p>
 			</form>
 			<div id="usuario">

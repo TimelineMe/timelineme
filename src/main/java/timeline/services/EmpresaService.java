@@ -25,5 +25,9 @@ public class EmpresaService {
 		EmpresaDao miEmpresaDao = DaoFactory.getEmpresaDao();
 		return miEmpresaDao.findByEmail(email);
 	}
+	public List<Empresa> findEmpresasByPalabra(String razon_Social) throws PersistenceException {
+		EmpresaDao empresasDao = DaoFactory.getEmpresaDao();
+		return empresasDao.findEmpresaByPalabra(razon_Social);
+	}
 }
 
