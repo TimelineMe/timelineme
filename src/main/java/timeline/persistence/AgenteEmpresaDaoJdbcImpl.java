@@ -7,9 +7,7 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 
-import timeline.model.Agente;
 import timeline.model.AgenteEmpresa;
-import timeline.model.Empresa;
 
 public class AgenteEmpresaDaoJdbcImpl implements  AgenteEmpresaDao {
 	
@@ -79,26 +77,6 @@ public class AgenteEmpresaDaoJdbcImpl implements  AgenteEmpresaDao {
 	}
 
 	
-
-	@Override
-	public List<Agente> findByEmpresa(String emailEmpresa) throws PersistenceException {
-		List<Agente> lista = new LinkedList<Agente>();
-		try {
-			Connection c = ConnectionProvider.getInstance().getConnection();
-			String query = "select * from AgenteEmpresa INNER JOIN Agente ON (Agente.email_Agente = AgenteEmpresa.agente) where AgenteEmpresa.sigue_Empresa = ?";
-			PreparedStatement statement = c.prepareStatement(query);
-			statement.setString(1, emailEmpresa);
-			ResultSet resultSet = statement.executeQuery();
-			while (resultSet.next()) {
-				lista.add(convertOneAgente(resultSet));
-			}
-		} catch (SQLException sqlException) {
-			throw new PersistenceException(sqlException);
-		}
-		return lista;
-	}
-
-	
 	@Override
 	public List<AgenteEmpresa> findAll() throws PersistenceException {
 		List<AgenteEmpresa> lista = new LinkedList<AgenteEmpresa>();
@@ -115,34 +93,9 @@ public class AgenteEmpresaDaoJdbcImpl implements  AgenteEmpresaDao {
 		return lista;
 	}
 
-	@Override
-	public List<Empresa> findByAgente(String emailAgente)
-			throws PersistenceException {
-		List<Empresa> lista = new LinkedList<Empresa>();
-		try {
-			Connection c = ConnectionProvider.getInstance().getConnection();
-			String query = "select * from AgenteEmpresa INNER JOIN Empresa ON (Empresa.email = AgenteEmpresa.sigue_Empresa) where AgenteEmpresa.agente=?";
-			PreparedStatement statement = c.prepareStatement(query);
-			statement.setString(1, emailAgente);
-			ResultSet resultSet = statement.executeQuery();
-			while (resultSet.next()) {
-				lista.add(convertOneEmpresa(resultSet));
-			}
-		} catch (SQLException sqlException) {
-			throw new PersistenceException(sqlException);
-		}
-		return lista;		
-	}
+	
 	private AgenteEmpresa convertOne(ResultSet resultSet) throws SQLException {
 		AgenteEmpresa retorno = new AgenteEmpresa(resultSet.getString("sigue_Empresa"),resultSet.getString("agente")); 
-		return retorno;
-	}
-	private Empresa convertOneEmpresa(ResultSet resultSet) throws SQLException {
-		Empresa retorno = new Empresa(resultSet.getString("email"),resultSet.getString("password"),resultSet.getString("razon_Social"),resultSet.getString("sitio_web"),resultSet.getString("direccion"),resultSet.getInt("telefono")); 
-		return retorno;
-	}
-	private Agente convertOneAgente(ResultSet resultSet) throws SQLException, PersistenceException {
-		Agente retorno = new Agente(resultSet.getString("email_Agente"),resultSet.getString("nombre_Agente"),resultSet.getString("password"),resultSet.getString("cargo"),resultSet.getString("descripcion"),resultSet.getString("empresa")); 
 		return retorno;
 	}
 

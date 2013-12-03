@@ -27,5 +27,10 @@ public class AgenteService {
 		AgenteDao miAgenteDao = DaoFactory.getAgenteDao();
 		return miAgenteDao.findByEmpresa(email);
 	}
+	
+	public List<Agente> findSeguidoresByEmpresa(String emailEmpresa) throws PersistenceException {
+		AgenteDao miAgenteDao = DaoFactory.getAgenteDao();
+		return miAgenteDao.findSeguidoresByEmpresa(emailEmpresa);
+	}
 }
 

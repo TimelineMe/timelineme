@@ -147,6 +147,24 @@ public class AgenteDaoJdbcImpl implements AgenteDao { // este es el que implemen
 		}
 		return lista;
 	}
+	
+	@Override
+	public List<Agente> findSeguidoresByEmpresa(String emailEmpresa) throws PersistenceException {
+		List<Agente> lista = new LinkedList<Agente>();
+		try {
+			Connection c = ConnectionProvider.getInstance().getConnection();
+			String query = "select * from AgenteEmpresa INNER JOIN Agente ON (Agente.email_Agente = AgenteEmpresa.agente) where AgenteEmpresa.sigue_Empresa = ?";
+			PreparedStatement statement = c.prepareStatement(query);
+			statement.setString(1, emailEmpresa);
+			ResultSet resultSet = statement.executeQuery();
+			while (resultSet.next()) {
+				lista.add(convertOneAgente(resultSet));
+			}
+		} catch (SQLException sqlException) {
+			throw new PersistenceException(sqlException);
+		}
+		return lista;
+	}
 
 	private Agente convertOneAgente(ResultSet resultSet) throws SQLException {
 		Agente retorno = new Agente(resultSet.getString("email_Agente"),resultSet.getString("nombre_Agente"),resultSet.getString("password"),resultSet.getString("cargo"),resultSet.getString("descripcion"),resultSet.getString("empresa")); 

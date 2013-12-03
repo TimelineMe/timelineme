@@ -20,4 +20,6 @@ public interface AgenteDao { //es una interface, que alguien tiene que implement
 
     public List<Agente> findByEmpresa(String emailEmpresa) throws PersistenceException;
     
+    public List<Agente> findSeguidoresByEmpresa(String emailEmpresa) throws PersistenceException;
+    
 }

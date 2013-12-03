@@ -9,6 +9,7 @@ import timeline.model.Empresa;
 import timeline.model.Noticia;
 import timeline.persistence.AgenteEmpresaDao;
 import timeline.persistence.DaoFactory;
+import timeline.persistence.EmpresaDao;
 import timeline.persistence.PersistenceException;
 
 public class AgenteEmpresaService {
@@ -20,23 +21,15 @@ public class AgenteEmpresaService {
 		}
 		return instance;
 	}
-	public List<Empresa> findByAgente(String emailAgente) throws PersistenceException {
-		AgenteEmpresaDao empresaDao = DaoFactory.getAgenteEmpresaDao();
-		return empresaDao.findByAgente(emailAgente);
-	}
 	
-	public List<Agente> findByEmpresa(String emailEmpresa) throws PersistenceException {
-		AgenteEmpresaDao empresaDao = DaoFactory.getAgenteEmpresaDao();
-		return empresaDao.findByEmpresa(emailEmpresa);
-	}
 	
 	public List<Noticia> findNoticiasByAgente(String emailAgente) throws PersistenceException {
 		
-		AgenteEmpresaDao empresaDao = DaoFactory.getAgenteEmpresaDao();
+		EmpresaDao empresaDao = DaoFactory.getEmpresaDao();
 		
 		//traigo la lista de empresas que sigue el agente
 		List <Empresa> empresasSeguidas = new LinkedList<Empresa>();
-		empresasSeguidas = empresaDao.findByAgente(emailAgente);
+		empresasSeguidas = empresaDao.findEmpresasSeguidasByAgente(emailAgente);
 		
 		//traigo la lista de agentes de todas las empresas seguidas
 		AgenteService agenteSvc = new AgenteService();

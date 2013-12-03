@@ -6,8 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
-
-import timeline.model.Agente;
 import timeline.model.Empresa;
 
 public class EmpresaDaoJdbcImpl implements EmpresaDao { // este es el que implementa el persona dao y hace los insert, delete, y update respectivos
@@ -150,6 +148,24 @@ public class EmpresaDaoJdbcImpl implements EmpresaDao { // este es el que implem
 		}
 		return lista;
 	}
+	@Override
+	public List<Empresa> findEmpresasSeguidasByAgente(String emailAgente) throws PersistenceException {
+		List<Empresa> lista = new LinkedList<Empresa>();
+		try {
+			Connection c = ConnectionProvider.getInstance().getConnection();
+			String query = "select * from AgenteEmpresa INNER JOIN Empresa ON (Empresa.email = AgenteEmpresa.sigue_Empresa) where AgenteEmpresa.agente=?";
+			PreparedStatement statement = c.prepareStatement(query);
+			statement.setString(1, emailAgente);
+			ResultSet resultSet = statement.executeQuery();
+			while (resultSet.next()) {
+				lista.add(convertOne(resultSet));
+			}
+		} catch (SQLException sqlException) {
+			throw new PersistenceException(sqlException);
+		}
+		return lista;		
+	}
+	
 	private Empresa convertOne(ResultSet resultSet) throws SQLException {
 		Empresa retorno = new Empresa(resultSet.getString("email"),resultSet.getString("password"),resultSet.getString("razon_Social"),resultSet.getString("sitio_web"),resultSet.getString("direccion"),resultSet.getInt("telefono")); //crea la persona, le asigna los valores y la devuelve
 		return retorno;

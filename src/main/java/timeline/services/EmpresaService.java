@@ -3,6 +3,7 @@ package timeline.services;
 import java.util.List;
 
 import timeline.model.Empresa;
+import timeline.persistence.AgenteEmpresaDao;
 import timeline.persistence.DaoFactory;
 import timeline.persistence.EmpresaDao;
 import timeline.persistence.PersistenceException;
@@ -28,6 +29,11 @@ public class EmpresaService {
 	public List<Empresa> findEmpresasByPalabra(String razon_Social) throws PersistenceException {
 		EmpresaDao empresasDao = DaoFactory.getEmpresaDao();
 		return empresasDao.findEmpresaByPalabra(razon_Social);
+	}
+	
+	public List<Empresa> findEmpresasSeguidasByAgente(String emailAgente) throws PersistenceException {
+		EmpresaDao empresaDao = DaoFactory.getEmpresaDao();
+		return empresaDao.findEmpresasSeguidasByAgente(emailAgente);
 	}
 }
 
