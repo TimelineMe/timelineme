@@ -38,14 +38,15 @@ public class MenuController {
 		return new ModelAndView("bienvenidoagente");
 	}
 	@RequestMapping("/buscador")
-	public ModelAndView Buscador(@RequestParam("palabra") String palabra) throws PersistenceException {
+	public ModelAndView Buscador(HttpSession session,@RequestParam("palabra") String palabra) throws PersistenceException {
 		
 		ModelAndView mavResultadosEmpresas = new ModelAndView(
 				"resultadosbusqueda");
-		
-		List<Empresa> misEmpresas = empresaService.findEmpresasByPalabra(palabra);
+		Agente agente = (Agente) session.getAttribute("agente");
+		List<Empresa> misEmpresas = empresaService.findEmpresasQueSigoByPalabra(agente.getEmail_Agente(), palabra);
+		List<Empresa> empresasNoSeguidas = empresaService.findEmpresasQueNoSigoByPalabra(agente.getEmail_Agente(), palabra);
 		mavResultadosEmpresas.addObject("misEmpresas", misEmpresas);
-		
+		mavResultadosEmpresas.addObject("empresasNoSeguidas", empresasNoSeguidas);
 		return mavResultadosEmpresas;
 	}
 
@@ -75,23 +76,24 @@ public class MenuController {
 	}
 
 	@RequestMapping("/empresasquesigo")
-	
 	public ModelAndView EmpresasQueSigo(HttpSession session)
 			throws PersistenceException {
 		ModelAndView mavPerfilAgente = new ModelAndView("empresasquesigo");
-			
-			Agente email = (Agente) session.getAttribute("agente");
-			List<Empresa> misEmpresasSeguidas = empresaService.findEmpresasSeguidasByAgente(email.getEmail_Agente());
-			mavPerfilAgente.addObject("misEmpresasSeguidas", misEmpresasSeguidas);
-			return mavPerfilAgente;
+
+		Agente email = (Agente) session.getAttribute("agente");
+		List<Empresa> misEmpresasSeguidas = empresaService
+				.findEmpresasSeguidasByAgente(email.getEmail_Agente());
+		mavPerfilAgente.addObject("misEmpresasSeguidas", misEmpresasSeguidas);
+		return mavPerfilAgente;
 	}
 
 	@RequestMapping("/notificaciones")
-	public ModelAndView Notificaciones(HttpSession session) throws PersistenceException {
+	public ModelAndView Notificaciones(HttpSession session)
+			throws PersistenceException {
 		ModelAndView mavNotificaciones = new ModelAndView("notificaciones");
-		
 		Agente email = (Agente) session.getAttribute("agente");
-		List <Noticia> noticiasSeguidas = agenteEmpresaService.findNoticiasByAgente(email.getEmail_Agente());
+		List<Noticia> noticiasSeguidas = agenteEmpresaService
+				.findNoticiasByAgente(email.getEmail_Agente());
 		mavNotificaciones.addObject("noticiasSeguidas", noticiasSeguidas);
 		return mavNotificaciones;
 	}
@@ -129,22 +131,22 @@ public class MenuController {
 	}
 
 	@RequestMapping("/resultadosbusqueda")
-	public ModelAndView resultadosbusqueda() throws PersistenceException {
+	public ModelAndView resultadosbusqueda(HttpSession session) throws PersistenceException {
 		
 		ModelAndView mavResultadosEmpresas = new ModelAndView(
 				"resultadosbusqueda");
-		
-		List<Empresa> misEmpresas = empresaService.findAllEmpresas();
+		Agente agente = (Agente) session.getAttribute("agente");
+		List<Empresa> misEmpresas = empresaService.findEmpresasSeguidasByAgente(agente.getEmail_Agente());
+		List<Empresa> empresasNoSeguidas = empresaService.findEmpresasQueNoSigo(agente.getEmail_Agente());
 		mavResultadosEmpresas.addObject("misEmpresas", misEmpresas);
-		
+		mavResultadosEmpresas.addObject("empresasNoSeguidas", empresasNoSeguidas);
 		return mavResultadosEmpresas;
 	}
 
 	@RequestMapping("/timeline")
 	public ModelAndView timeline(@RequestParam("empresa") String email) throws PersistenceException {
 		
-		ModelAndView mavTimelineEmpresa = new ModelAndView(
-				"timeline");
+		ModelAndView mavTimelineEmpresa = new ModelAndView("timeline");
 		
 		Empresa miEmpresa = empresaService.findByEmail(email);
 		String emailEmpresa = miEmpresa.getEmail();

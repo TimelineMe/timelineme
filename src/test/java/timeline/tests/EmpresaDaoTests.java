@@ -90,6 +90,13 @@ public class EmpresaDaoTests {
 		assertEquals("se espera que haya dos empresas en la base", 4, todoslosEmpresas.size());
 
 	}
+	@Test
+	public void testQueSePuedeBuscarLasEmpresasNoSeguidas() throws PersistenceException {
+
+		List<Empresa> todoslosEmpresas = dao.findEmpresasNoSeguidas("aliciarosenthal@gmail.com");
+		assertEquals("se espera que haya dos empresas en la base", 3, todoslosEmpresas.size());
+
+	}
 	
 	@Test
 	public void buscarEmpresaPorPalabra() throws PersistenceException {

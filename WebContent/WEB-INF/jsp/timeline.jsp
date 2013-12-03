@@ -54,7 +54,6 @@
 				<li>Sitio Web: <a href="http://${miEmpresa.sitio_Web}">${miEmpresa.sitio_Web}</a></li>
 				<li>E-mail: <a href="mailto:${miEmpresa.email}">${miEmpresa.email}</a></li>
 			</ul>
-			<p id="headerEmpresaBtnSeguir"><a href="seguir.do?empresa=${miEmpresa.email}">Seguir</a></p>
 		</div>
 		${pemailEmpresa}
 		<c:forEach items="${misNoticias}" var="unaNoticia">

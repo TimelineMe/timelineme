@@ -48,8 +48,11 @@
 		<div id="contenido">
 			<h1>Resultados de búsqueda</h1>
 			<ul id="resultadosBusqueda">
+				<c:forEach items="${empresasNoSeguidas}" var="unaEmpresaNoSeguida">
+					<li><a href="timeline.do?empresa=${unaEmpresaNoSeguida.email}">${unaEmpresaNoSeguida.razon_Social}</a> <a href="seguir.do?empresa=${unaEmpresaNoSeguida.email}" class="btnSeguir">Seguir</a></li>
+				</c:forEach>
 				<c:forEach items="${misEmpresas}" var="unaEmpresa">
-					<li><a href="timeline.do?empresa=${unaEmpresa.email}">${unaEmpresa.razon_Social}</a> <a href="seguir.do?empresa=${unaEmpresa.email}" class="btnSeguir">Seguir</a></li>
+					<li><a href="timeline.do?empresa=${unaEmpresa.email}">${unaEmpresa.razon_Social}</a> <a href="dejardeseguir.do?empresa=${unaEmpresa.email}" class="btnSeguir">Dejar de Seguir</a></li>
 				</c:forEach>
 			</ul>
 		</div>
