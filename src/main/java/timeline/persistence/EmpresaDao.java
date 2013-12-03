@@ -17,15 +17,11 @@ public interface EmpresaDao { //es una interface, que alguien tiene que implemen
     
     public List<Empresa> findAll() throws PersistenceException;
     
-    public List<Empresa> findEmpresaByPalabra(String razon_Social ) throws PersistenceException;
-    
     public List<Empresa> findEmpresasSeguidasByAgente(String emailAgente) throws PersistenceException;
     
-    public List<Empresa> findEmpresasNoSeguidas(String emailAgente) throws PersistenceException;
-
 	public List<Empresa> findEmpresasSeguidasByPalabra(String emailAgente,
 			String palabra) throws PersistenceException;
 
-	List<Empresa> findEmpresasNoSeguidasByPalabra(String emailAgente,
+	public List<Empresa> findEmpresasNoSeguidasByPalabra(String emailAgente,
 			String palabra) throws PersistenceException;
 }

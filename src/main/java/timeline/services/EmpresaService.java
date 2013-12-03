@@ -39,9 +39,5 @@ public class EmpresaService {
 		EmpresaDao empresaDao = DaoFactory.getEmpresaDao();
 		return empresaDao.findEmpresasSeguidasByAgente(emailAgente);
 	}
-	public List<Empresa> findEmpresasQueNoSigo (String emailAgente) throws PersistenceException {
-		EmpresaDao empresaDao = DaoFactory.getEmpresaDao();
-		return empresaDao.findEmpresasNoSeguidas(emailAgente);
-	}
 }
 

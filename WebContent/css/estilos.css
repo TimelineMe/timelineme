@@ -298,6 +298,12 @@ form#formRegistro fieldset, form#formRegistroAgente fieldset , #headerEmpresa, .
 	border: 1px solid #999;
 	margin: 5px;
 }
+.avatar{
+	width:32px;
+	height:32px;
+	border:2px #fff solid;
+	margin-top:-3px;
+}
 #headerEmpresa h1, #headerEmpresa h2, #headerEmpresa ul, #headerEmpresa p {
 	width: 700px;
 	margin-right: 10px;

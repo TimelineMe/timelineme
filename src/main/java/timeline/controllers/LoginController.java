@@ -12,9 +12,9 @@ import org.springframework.web.servlet.ModelAndView;
 import timeline.model.Agente;
 import timeline.model.Noticia;
 import timeline.persistence.PersistenceException;
-import timeline.services.AgenteEmpresaService;
 import timeline.services.LoginService;
 import timeline.services.AgenteService;
+import timeline.services.NoticiaService;
 
 @Controller
 @RequestMapping("/paginas")
@@ -23,7 +23,7 @@ public class LoginController {
 
 	LoginService loginService = new LoginService();
 	AgenteService agenteService = new AgenteService();
-	AgenteEmpresaService agenteEmpresaService = new AgenteEmpresaService();
+	NoticiaService noticiaService = new NoticiaService();
 
 	@RequestMapping("/login")
 	public ModelAndView authenticate(
@@ -34,9 +34,11 @@ public class LoginController {
 
 		if (loginService.validar(email, password)) {
 			ModelAndView modelAndView = new ModelAndView();
-			List <Noticia> noticiasSeguidas = agenteEmpresaService.findNoticiasByAgente(email);
-			Integer novedades = noticiasSeguidas.size();
+			//trae un objeto agente 
 			Agente agente = agenteService.findByEmail(email);
+			//cuenta la cantidad de noticias que tiene y guarda la cantidad en novedades
+			List <Noticia> noticiasSeguidas = noticiaService.findNoticiasByEmpresaSeguida(email);
+			Integer novedades = noticiasSeguidas.size();
 			modelAndView.addObject("agente", agente);
 			modelAndView.addObject("novedades", novedades);
 			modelAndView.setViewName("bienvenidoagente");
@@ -46,7 +48,6 @@ public class LoginController {
 		}
 
 		return reenvio;
-
 	}
 	@RequestMapping("/logout")
 	public ModelAndView Logout() {

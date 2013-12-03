@@ -7,8 +7,6 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.springframework.web.bind.annotation.RequestParam;
-
 import timeline.model.Noticia;
 
 public class NoticiaDaoJdbcImpl implements NoticiaDao {
@@ -130,7 +128,7 @@ public class NoticiaDaoJdbcImpl implements NoticiaDao {
 		List<Noticia> lista = new LinkedList<Noticia>();
 		try{
 				Connection c = ConnectionProvider.getInstance().getConnection();
-				String query = "select * from Noticia INNER JOIN Agente ON(Noticia.autor=Agente.email_Agente) INNER JOIN Empresa ON (Agente.empresa  =  Empresa.email) where Empresa.email=?";
+				String query = "select * from Noticia INNER JOIN Agente ON(Noticia.autor=Agente.email_Agente) INNER JOIN Empresa ON (Agente.empresa  =  Empresa.email) where Empresa.email=?  order by fecha_Hora desc";
 				PreparedStatement statement = c.prepareStatement(query);
 				statement.setString(1, pemailEmpresa);
 				ResultSet resultSet = statement.executeQuery();
@@ -149,7 +147,7 @@ public class NoticiaDaoJdbcImpl implements NoticiaDao {
 		List<Noticia> lista = new LinkedList<Noticia>();
 		try{
 			Connection c = ConnectionProvider.getInstance().getConnection();
-			String query = "select * from Noticia where autor=?";
+			String query = "select * from Noticia where autor=? order by fecha_Hora desc";
 			PreparedStatement statement = c.prepareStatement(query);
 			statement.setString(1, emailAutor);
 			ResultSet resultSet = statement.executeQuery();
@@ -160,6 +158,24 @@ public class NoticiaDaoJdbcImpl implements NoticiaDao {
 			throw new PersistenceException(sqlException);
 		}
 		return lista;
+	}
+	@Override
+	public List<Noticia> findbyEmpresaSeguida(String emailEmpresa)
+			throws PersistenceException {
+		List<Noticia> lista = new LinkedList<Noticia>();
+		try{
+				Connection c = ConnectionProvider.getInstance().getConnection();
+				String query = "SELECT Noticia.id_Noticia, Noticia.titulo, Noticia.contenido, Noticia.fecha_Hora, Noticia.autor from AgenteEmpresa INNER JOIN Empresa ON (Empresa.email = AgenteEmpresa.sigue_Empresa) INNER JOIN Agente ON (Agente.Empresa = Empresa.email) INNER JOIN Noticia ON (Noticia.autor = Agente.email_Agente) WHERE AgenteEmpresa.agente = ? ORDER BY fecha_Hora DESC";
+				PreparedStatement statement = c.prepareStatement(query);
+				statement.setString(1, emailEmpresa);
+				ResultSet resultSet = statement.executeQuery();
+				while(resultSet.next()){
+					lista.add(convertOne(resultSet));
+				}
+			}catch(SQLException sqlException){
+				throw new PersistenceException(sqlException);
+			}
+			return lista;
 	}
 	private Noticia convertOne(ResultSet resultSet) throws SQLException {
 		Noticia retorno = new Noticia(resultSet.getInt("id_Noticia"),resultSet.getString("titulo"),resultSet.getString("contenido"),resultSet.getString("fecha_hora"),resultSet.getString("autor"));

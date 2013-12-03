@@ -39,7 +39,7 @@
 				<p><button type="submit">Buscar</button></p>
 			</form>
 			<div id="usuario">
-				<img src="../img/perfil.png" alt="" /> <p>Hola ${agente.nombre}</p>
+				<img src="../img/usuarios/${agente.nombre}.jpg" alt="" class="avatar" /> <p>Hola ${agente.nombre}</p>
 			</div>
 		</div>
 	</div>

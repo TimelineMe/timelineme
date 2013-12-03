@@ -132,22 +132,6 @@ public class EmpresaDaoJdbcImpl implements EmpresaDao { // este es el que implem
 		}
 		return empresa;
 	}
-	public List<Empresa> findEmpresaByPalabra(String razon_Social) throws PersistenceException{
-		List<Empresa> lista = new LinkedList<Empresa>();
-		try {
-			Connection c = ConnectionProvider.getInstance().getConnection();
-			String query = "select * from Empresa WHERE razon_Social LIKE ?";
-			PreparedStatement statement = c.prepareStatement(query);
-			statement.setString(1, "%"+razon_Social+"%");
-			ResultSet resultSet = statement.executeQuery();
-			while (resultSet.next()) {
-				lista.add(convertOne(resultSet));
-			}
-		} catch (SQLException sqlException) {
-			throw new PersistenceException(sqlException);
-		}
-		return lista;
-	}
 	@Override
 	public List<Empresa> findEmpresasSeguidasByPalabra(String emailAgente, String palabra) throws PersistenceException {
 		List<Empresa> lista = new LinkedList<Empresa>();
@@ -191,24 +175,6 @@ public class EmpresaDaoJdbcImpl implements EmpresaDao { // este es el que implem
 		try {
 			Connection c = ConnectionProvider.getInstance().getConnection();
 			String query = "select * from AgenteEmpresa INNER JOIN Empresa ON (Empresa.email = AgenteEmpresa.sigue_Empresa) where AgenteEmpresa.agente=?";
-			PreparedStatement statement = c.prepareStatement(query);
-			statement.setString(1, emailAgente);
-			ResultSet resultSet = statement.executeQuery();
-			while (resultSet.next()) {
-				lista.add(convertOne(resultSet));
-			}
-		} catch (SQLException sqlException) {
-			throw new PersistenceException(sqlException);
-		}
-		return lista;		
-	}
-	@Override
-	public List<Empresa> findEmpresasNoSeguidas(String emailAgente) throws PersistenceException {
-		List<Empresa> lista = new LinkedList<Empresa>();
-		try {
-			Connection c = ConnectionProvider.getInstance().getConnection();
-			String query = "select * from empresa where email not in " +
-                    "(select sigue_Empresa from AgenteEmpresa where agente = ?)";
 			PreparedStatement statement = c.prepareStatement(query);
 			statement.setString(1, emailAgente);
 			ResultSet resultSet = statement.executeQuery();

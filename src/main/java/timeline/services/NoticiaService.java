@@ -19,8 +19,8 @@ public class NoticiaService {
 		return instance;
 	}
 	public List<Noticia> findbyEmpresa(String emailEmpresa) throws PersistenceException {
-		NoticiaDao empresasDao = DaoFactory.getNoticiaDao();
-		return empresasDao.findbyEmpresa(emailEmpresa);
+		NoticiaDao noticiasDao = DaoFactory.getNoticiaDao();
+		return noticiasDao.findbyEmpresa(emailEmpresa);
 	}
 	public List<Noticia> findbyAutor(String emailAutor) throws PersistenceException {
 		NoticiaDao autorDao = DaoFactory.getNoticiaDao();
@@ -48,6 +48,10 @@ public class NoticiaService {
 		
 		Noticia noticia = new Noticia(id, titulo, contenido, fecha, autor);
 		noticiaDao.insert(noticia);
+	}
+	public List<Noticia> findNoticiasByEmpresaSeguida(String emailAgente) throws PersistenceException {
+		NoticiaDao noticiasDao = DaoFactory.getNoticiaDao();
+		return noticiasDao.findbyEmpresaSeguida(emailAgente);
 	}
 }
 

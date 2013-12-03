@@ -38,7 +38,7 @@
 				<p><button type="submit">Buscar</button></p>
 			</form>
 			<div id="usuario">
-				<img src="../img/perfil.png" alt="" /> <p>Hola ${agente.nombre}</p>
+				<img src="../img/usuarios/${agente.nombre}.jpg" alt="" class="avatar" /> <p>Hola ${agente.nombre}</p>
 			</div>
 		</div>
 	</div>
@@ -49,7 +49,7 @@
 				<li id="botonesQueHacerBtnCrearNoticia"><a href="crearnoticia.do">Crear una noticia</a></li>
 				<li id="botonesQueHacerBtnVerPerfil"><a href="perfilagente.do">Ver mi perfil</a></li>
 				<li id="botonesQueHacerBtnEmpresasQueSigo"><a href="empresasquesigo.do">Ver empresas que sigo</a></li>
-				<li id="botonesQueHacerBtnBuscarEmpresas"><a href="resultadosbusqueda.do">Buscar empresas</a></li>
+				<li id="botonesQueHacerBtnBuscarEmpresas"><a href="buscador.do?palabra=">Buscar empresas</a></li>
 			</ul>
 		</div>
 	</div>

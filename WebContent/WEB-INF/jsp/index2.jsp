@@ -32,7 +32,7 @@
 				</ul>
 			</div>
 			<div id="usuario" style="display: none">
-				<img src="../img/perfil.png" alt="" /> <p>Hola usuario</p>
+				<img src="../img/usuarios/${agente.nombre}.jpg" alt="" class="avatar" /> <p>Hola usuario</p>
 			</div>
 			<div id="login">
 				<form action="login.do" method="post" name="formLogin">
