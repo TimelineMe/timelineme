@@ -26,5 +26,6 @@ public class AgenteEmpresaService {
 		AgenteEmpresaDao agenteEmpresaDao = DaoFactory.getAgenteEmpresaDao();
 		agenteEmpresaDao.delete(dejarEmpresa);
 	}
+	
 }
 

@@ -1,4 +1,4 @@
-package timeline.tests;
+package timeline.test.persistence;
 
 import static org.junit.Assert.*;
 
@@ -78,7 +78,7 @@ public class EmpresaDaoTests {
 	@Test
 	public void buscarEmpresasSeguidasPorAgente() throws PersistenceException{
 		List<Empresa> lista = dao.findEmpresasSeguidasByAgente("aliciarosenthal@gmail.com"); 
-		assertEquals("traer las empresas que sigue alice!",1,lista.size());
+		assertEquals("traer las empresas que sigue alice!",2,lista.size());
 	}
 
 }

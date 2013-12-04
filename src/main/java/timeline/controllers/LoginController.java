@@ -1,6 +1,5 @@
 package timeline.controllers;
 
-
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -18,7 +17,7 @@ import timeline.services.NoticiaService;
 
 @Controller
 @RequestMapping("/paginas")
-@SessionAttributes({"agente","novedades"})
+@SessionAttributes({ "agente", "novedades" })
 public class LoginController {
 
 	LoginService loginService = new LoginService();
@@ -26,33 +25,37 @@ public class LoginController {
 	NoticiaService noticiaService = new NoticiaService();
 
 	@RequestMapping("/login")
-	public ModelAndView autenticacion(
-			@RequestParam("email") String email,
-			@RequestParam("password") String password) throws PersistenceException{
+	public ModelAndView autenticacion(@RequestParam("email") String email,
+			@RequestParam("password") String password)
+			throws PersistenceException {
 
 		ModelAndView reenvio = null;
 
 		if (loginService.validar(email, password)) {
 			ModelAndView modelAndView = new ModelAndView();
-			//trae un objeto agente 
+			// busca un agente por el email que recibio por parametro
 			Agente agente = agenteService.findByEmail(email);
-			//cuenta la cantidad de noticias que tiene y guarda la cantidad en novedades
-			List <Noticia> noticiasSeguidas = noticiaService.findNoticiasByEmpresaSeguida(email);
+			// cuenta la cantidad de noticias que tiene y guarda la cantidad en novedades
+			List<Noticia> noticiasSeguidas = noticiaService
+					.findNoticiasByEmpresaSeguida(email);
 			Integer novedades = noticiasSeguidas.size();
+			// guarda los datos de la sesion
 			modelAndView.addObject("agente", agente);
 			modelAndView.addObject("novedades", novedades);
 			modelAndView.setViewName("bienvenidoagente");
 			return modelAndView;
 		} else {
-			reenvio = new ModelAndView("index2", "mensaje", "Contraseña incorrecta, o usuario no valido");
+			reenvio = new ModelAndView("index2", "mensaje",
+					"Contraseña incorrecta, o usuario no valido");
 		}
 
 		return reenvio;
 	}
+
 	@RequestMapping("/logout")
 	public ModelAndView Logout() {
-		return new ModelAndView("index2","mensaje","Estas deslogueado. Para volver a ingresar al sitio, tendras que loguearte de nuevo.");
+		return new ModelAndView("index2","mensaje",
+				"Estas deslogueado. Para volver a ingresar al sitio, tendras que loguearte de nuevo.");
 	}
 
 }
-

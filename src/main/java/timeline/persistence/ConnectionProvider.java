@@ -9,8 +9,8 @@ public class ConnectionProvider {
 	private static ConnectionProvider instance;
 	private static Connection connection = null;
 	
-	private String url = "jdbc:sqlite:C:/java/workspace/TimelineMe/timeline.db"; //la url, taller.db esta en la raiz
-
+	private String url = "jdbc:sqlite:C:/java/workspace/TimelineMe/timeline.db"; 
+	//private String url = "jdbc:sqlite:C:/Users/RS/cosas de la facu/TallerwebI/Workspace/TimelineMe/timeline.db";
 	private ConnectionProvider() throws PersistenceException {
 		try {
 			Class.forName("org.sqlite.JDBC"); //registrar el driver

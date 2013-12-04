@@ -1,4 +1,4 @@
-package timeline.tests;
+package timeline.test.persistence;
 
 import static org.junit.Assert.*;
 
@@ -34,6 +34,6 @@ public class AgenteSigueEmpresaTests {
 	@Test
 	public void todos() throws PersistenceException {
 		List<AgenteEmpresa> AgentesEmpresa = dao.findAll();
-		assertEquals("tiene que haber 11 relaciones",11,AgentesEmpresa.size());
+		assertEquals("tiene que haber 14 relaciones",14,AgentesEmpresa.size());
 	}
 }

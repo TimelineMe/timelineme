@@ -1,4 +1,4 @@
-package timeline.tests;
+package timeline.test.controllers;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -16,13 +16,11 @@ import timeline.controllers.LoginController;
 public class LoginControllerTests {
 
 	@Test
-	public void helloWorld() throws Exception {
-
+	public void autenticacion() throws Exception {
 		LoginController controller = new LoginController();
 		ModelAndView modelAndView = controller.autenticacion("leandroandres1@gmail.com","123456");
-
 		Assert.assertEquals("bienvenidoagente", modelAndView.getViewName());
-		Assert.assertEquals("leandroandres1@gmail.com", modelAndView.getModel().get("agente"));
+		Assert.assertEquals(9, modelAndView.getModel().get("novedades"));
 
 	}
 

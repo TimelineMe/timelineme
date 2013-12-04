@@ -1,4 +1,4 @@
-package timeline.tests;
+package timeline.test.persistence;
 
 import static org.junit.Assert.*;
 
