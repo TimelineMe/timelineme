@@ -2,7 +2,6 @@ package timeline.tests;
 
 import static org.junit.Assert.*;
 
-import java.util.Date;
 import java.util.List;
 
 import org.junit.After;
@@ -18,84 +17,59 @@ public class NoticiaDaoTests {
 	
 	NoticiaDao dao = DaoFactory.getNoticiaDao();
 	
-	Noticia PerroMuerto = new Noticia(1,"Perro muere atropellado", null, null, null);
-	Noticia LadronCapturado = new Noticia(2,"Ladron profugo recapturado", null, null, null);
-	Noticia ParaJuanJose = new Noticia(6,"Lo ultimo de juanjo","juanjo con chupines","2013-12-01 00:00:00","juanjoc@nuevaesponja.com.ar");
-	/*@Before
-	public void setUp() throws PersistenceException {
-		//borramos todas las noticias para iniciar con la BDD vacia
-		for(Noticia cadaUna:dao.findAll()){//trae la lista completa
-			dao.delete(cadaUna); //va borrando a cada noticia
-		}
+	
+	Noticia tengosueño = new Noticia(11,"tengosueño","se me caen los ojos","2015-12-01 05:03:10","juanjoc@nuevaesponja.com.ar");
+	
+	@Before
+	public void insersion() throws PersistenceException{
+		dao.insert(tengosueño);
+	}
+	@Test
+	public void BuscarEstaNoticia() throws PersistenceException{
+		Noticia noticia = dao.findByID(11);
 		
-		dao.insert(PerroMuerto);
-		dao.insert(LadronCapturado);
+		assertNotNull("La noticia con id 11 debe exisitir",noticia);
+		assertEquals("titulo noticia 11: tengosueño","tengosueño",noticia.getTitulo());
+	}
+	@Test
+	public void actualizar() throws PersistenceException{
+		Noticia noticiaActual = dao.findByID(11);
+		assertEquals("comprobemos que el titulo es tengosueño","tengosueño",noticiaActual.getTitulo());
+		noticiaActual.setTitulo("ya descance");
+		dao.update(noticiaActual);
+		assertEquals("comprobamos que el titulo ahora es ya descance","ya descance",noticiaActual.getTitulo());
+	}
+	@After
+	public void borrarEsaNoticia() throws PersistenceException{
+	dao.delete(tengosueño);	
 	}
 	
-	@After
-	public void tearDown() throws PersistenceException{
-		//borramos todas las noticias creadas en forma global
-		dao.delete(PerroMuerto);
-		dao.delete(LadronCapturado);
-	}
 	
 	@Test
 	public void BuscarUnaNoticia() throws PersistenceException{
-		Noticia noticiaEncontrada = dao.findByID(PerroMuerto.getId());
+		Noticia noticia = dao.findByID(1);
 		
-		assertNotNull("La noticia con id 1 debe exisitir",noticiaEncontrada);
-		assertEquals("titulo noticia 1: Perro muere atropellado ","Perro muere atropellado",noticiaEncontrada.getTitulo());
+		assertNotNull("La noticia con id 1 debe exisitir",noticia);
+		assertEquals("titulo noticia 1: noticia 1","Noticia1",noticia.getTitulo());
 	}
 	
-	@Test
-	public void InsertarUnaNoticia() throws PersistenceException{
-		Noticia Obni = new Noticia(3,"obni visto en mendoza", null, null, null);
-		assertEquals("chequeamos que existen 2 noticias ante de insertar",2,dao.findAll().size());
-		
-		dao.insert(Obni);
-		assertEquals("ahora deberia haber 3 noticias",3,dao.findAll().size());
-		assertNotNull("chequeamos que exista la noticia",dao.findByID(Obni.getId()));
-	}
-	@Test
-	public void BorrarUnaNoticia() throws PersistenceException{
-		Noticia NotiAborrar = dao.findByID(PerroMuerto.getId());
-		dao.delete(PerroMuerto);
 	
-		NotiAborrar = dao.findByID(1);
-		assertNull("La noticia de Id = 1 no deberia estar",NotiAborrar);
-	}
-	
-	@Test
-	public void ActualizarAgente() throws PersistenceException{
-	  Noticia NoticiaEncontrada = dao.findByID(LadronCapturado.getId());
-	  
-	  assertEquals("la noticia de id = 2 es la del ladron","Ladron profugo recapturado",NoticiaEncontrada.getTitulo());
-	  NoticiaEncontrada.setTitulo("Ladron recapturado profugo otra vez");
-	  dao.update(NoticiaEncontrada);
-	  assertEquals("el titulo ahora camio","Ladron recapturado profugo otra vez",NoticiaEncontrada.getTitulo());
-	}
 	
 	@Test
 	public void BuscarTodasLasNoticias() throws PersistenceException{
 		List <Noticia> TodasLasNoticias = dao.findAll();
-		assertEquals("tiene que haber 2 noticias en la BDD",2,TodasLasNoticias.size());
-	}*/
-	@Test
-	public void Insertar() throws PersistenceException{
-		dao.insert(ParaJuanJose);
-		List <Noticia> TodasLasNoticias = dao.findbyAutor("juanjoc@nuevaesponja.com.ar");
-		assertEquals("tiene que haber 1 noticia en la BDD",1,TodasLasNoticias.size());
-		
+		assertEquals("tiene que haber 11 noticias en la BDD",11,TodasLasNoticias.size());
 	}
+	
 	@Test
 	public void BuscarLasNoticasdeUnAutor() throws PersistenceException{
 		List <Noticia> TodasLasNoticias = dao.findbyAutor("leandroandres1@gmail.com");
-		assertEquals("tiene que haber 3 noticias en la BDD",3,TodasLasNoticias.size());
+		assertEquals("tiene que haber 5 noticias en la BDD",5,TodasLasNoticias.size());
 	}
 	
 	@Test
 	public void BuscarLasNoticasdeUnaEmpresa() throws PersistenceException{
 		List <Noticia> TodasLasNoticias = dao.findbyEmpresa("prueba@prueba.com.ar");
-		assertEquals("tiene que haber 1 noticias en la BDD",1,TodasLasNoticias.size());
+		assertEquals("tiene que haber 3 noticias en la BDD",3,TodasLasNoticias.size());
 	}
 }

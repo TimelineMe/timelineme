@@ -66,7 +66,7 @@
 			<h2>Agentes que me siguen</h2>
 			<ul id="listaEmpresasQueSigo">
 				<c:forEach items="${misSeguidores}" var="unSeguidor">
-					<li><a href="perfilautor.do?emailAgente=${unSeguidor.email_Agente}">${unSeguidor.nombre}</a></li>
+				<li><a href="perfilautor.do?emailAgente=${unSeguidor.email_Agente}"><img src="../img/usuarios/${unSeguidor.nombre}.jpg" alt="" class="avatarLista" />${unSeguidor.nombre}</a></li>
 				</c:forEach>
 				
 			</ul>

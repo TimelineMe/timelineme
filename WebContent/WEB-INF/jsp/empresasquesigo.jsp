@@ -48,7 +48,7 @@
 			<h1>Empresas que sigo</h1>
 			<ul id="listaEmpresasQueSigo">
 				<c:forEach items="${misEmpresasSeguidas}" var="unaEmpresaSeguida">
-				<li><a href="timeline.do?empresa=${unaEmpresaSeguida.email}">${unaEmpresaSeguida.razon_Social}</a><a href="dejardeseguir.do?empresa=${unaEmpresaSeguida.email}" class="btnDejarDeSeguir">Dejar de seguir</a></li>
+				<li><a href="timeline.do?empresa=${unaEmpresaSeguida.email}"><img src="../img/empresas/${unaEmpresaSeguida.razon_Social}.jpg" alt="" class="avatarLista" />${unaEmpresaSeguida.razon_Social}</a><a href="dejardeseguir.do?empresa=${unaEmpresaSeguida.email}" class="btnDejarDeSeguir">Dejar de seguir</a></li>
 				</c:forEach>
 			</ul>
 		</div>

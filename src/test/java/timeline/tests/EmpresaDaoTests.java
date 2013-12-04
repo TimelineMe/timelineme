@@ -16,93 +16,69 @@ import timeline.persistence.PersistenceException;
 public class EmpresaDaoTests {
 
 	EmpresaDao dao = DaoFactory.getEmpresaDao(); //devuelve un dao
-
-	Empresa aerolinea = new Empresa("facebook@aerolineaxxx.test",null,"Aerolinea xxx",  null, null, 123);
-	Empresa supermercado = new Empresa("facebook@superpirulo.test", null,"Super Pirulo", null, null, 123);
-
-	/*@Before
-	public void setUp() throws PersistenceException {
-		// se borran todos los empresas para iniciar con la base vacia
-		for (Empresa cadaEmpresa : dao.findAll()) { //aca trae la lista completa 
-			dao.delete(cadaEmpresa); //va borrando a cada persona
-		}
-
-		dao.insert(aerolinea);
-		dao.insert(supermercado);
+	
+	Empresa choco = new Empresa("choco@empresa.com","123456", "chocolatins","www.chocos.com","cerrito 1001",4450-4563);
+	
+	@Before
+	public void insertarEmpresa() throws PersistenceException{
+		dao.insert(choco);
 	}
 
+	@Test 
+	public void probarLaInsercion() throws PersistenceException{
+	 Empresa empresaInsertada = dao.findByEmail("choco@empresa.com");
+		assertEquals("probar que se inserto choco","chocolatins",empresaInsertada.getRazon_Social());
+	}
+	
+	@Test
+	public void actualizarEmpresa() throws PersistenceException{
+		Empresa EmpresaEncontrada = dao.findByEmail("choco@empresa.com");
+		assertEquals("la empresa tiene razon social chocolatins", "chocolatins",EmpresaEncontrada.getRazon_Social());
+		EmpresaEncontrada.setRazon_Social("chocoAguila");
+		dao.update(EmpresaEncontrada);
+		assertEquals("la razon social ahora es chocoAguila", "chocoAguila",EmpresaEncontrada.getRazon_Social());
+	}
+	
 	@After
-	public void tearDown() throws PersistenceException {
-		// se borran todos los empresas creados en forma global
-		dao.delete(aerolinea);
-		dao.delete(supermercado);
-
+	public void borrarUnaEmpresa() throws PersistenceException{
+		dao.delete(choco);
 	}
 
 	@Test
 	public void testQueSePuedeBuscarUnEmpresa() throws PersistenceException {
 
-		Empresa empresaEncontrado = dao.findByEmail(aerolinea.getEmail());
+		Empresa empresaEncontrada = dao.findByEmail("prueba@prueba.com.ar");
 
-		assertNotNull("el empresa con id 2 debe existir", empresaEncontrado);
-		assertEquals("el empresa 2 tiene nombre: Aerolinea xxx", "Aerolinea xxx", empresaEncontrado.getRazon_Social());
-
-	}
-
-	@Test
-	public void testQueSePuedeInsertarUnEmpresa() throws PersistenceException {
-
-		Empresa libreria = new Empresa ("facebook@libreriapixel.test", null,"libreria pixel", null, null, 253);
-		assertEquals("antes de insertar hay 2 empresas", 2, dao.findAll().size());
-
-		dao.insert(libreria);
-		assertEquals("luego de insertar hay 3 empresas", 3, dao.findAll().size());
-		assertNotNull("que existe un empresa con ese id", dao.findByEmail(libreria.getEmail()));
+		assertNotNull("el empresa con id 1 debe existir", empresaEncontrada);
+		assertEquals("el empresa 1 tiene nombre: Prueba", "Prueba", empresaEncontrada.getRazon_Social());
 
 	}
-	
-	@Test
-	public void testQueSePuedeBorrarUnEmpresa() throws PersistenceException {
-
-		Empresa empresaEncontrado = dao.findByEmail(aerolinea.getEmail());
-		dao.delete(empresaEncontrado);
-
-		empresaEncontrado = dao.findByEmail("facebook@aerolineaxxx.test");
-		assertNull("el empresa con ese id no deberia existir", empresaEncontrado);
-
-	}
-	
-	@Test
-	public void testQueSePuedeActualizarUnEmpresa() throws PersistenceException {
-
-		Empresa empresaEncontrado = dao.findByEmail(aerolinea.getEmail());
-		assertEquals("la persona con id 1 se llama Aerolinea xxx", "Aerolinea xxx", empresaEncontrado.getRazon_Social());
-		empresaEncontrado.setRazon_Social("Aerolinea Lan");
-		dao.update(empresaEncontrado);
-		assertEquals("el empresa ahora es Aerolinea Lan", "Aerolinea Lan", empresaEncontrado.getRazon_Social());
-
-	}*/
 
 	@Test
 	public void testQueSePuedenBuscarTodosLosEmpresas() throws PersistenceException {
 
 		List<Empresa> todoslosEmpresas = dao.findAll();
-		assertEquals("se espera que haya dos empresas en la base", 4, todoslosEmpresas.size());
+		assertEquals("se espera que haya dos empresas en la base", 5, todoslosEmpresas.size());
 
 	}
-	/*@Test
+	@Test
 	public void testQueSePuedeBuscarLasEmpresasNoSeguidas() throws PersistenceException {
 
-		List<Empresa> todoslosEmpresas = dao.findEmpresasNoSeguidas("aliciarosenthal@gmail.com");
-		assertEquals("se espera que haya dos empresas en la base", 3, todoslosEmpresas.size());
+		List<Empresa> todoslosEmpresas = dao.findEmpresasNoSeguidasByPalabra("marcos.scalzotto@hotmail.com", "ja");
+		assertEquals("se espera que haya dos empresas en la base", 1, todoslosEmpresas.size());
 
 	}
 	
 	@Test
 	public void buscarEmpresaPorPalabra() throws PersistenceException {
-		List<Empresa> lista = dao.findEmpresaByPalabra("Ja");
-		assertEquals("buscar empresa por palabra",2,lista.size());
-	}*/
+		List<Empresa> lista = dao.findEmpresasSeguidasByPalabra("marcos.scalzotto@hotmail.com", "ja");
+		assertEquals("buscar empresa por palabra",1,lista.size());
+	}
 	
+	@Test
+	public void buscarEmpresasSeguidasPorAgente() throws PersistenceException{
+		List<Empresa> lista = dao.findEmpresasSeguidasByAgente("aliciarosenthal@gmail.com"); 
+		assertEquals("traer las empresas que sigue alice!",1,lista.size());
+	}
 
 }

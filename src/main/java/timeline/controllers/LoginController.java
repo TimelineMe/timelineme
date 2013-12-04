@@ -26,7 +26,7 @@ public class LoginController {
 	NoticiaService noticiaService = new NoticiaService();
 
 	@RequestMapping("/login")
-	public ModelAndView authenticate(
+	public ModelAndView autenticacion(
 			@RequestParam("email") String email,
 			@RequestParam("password") String password) throws PersistenceException{
 
